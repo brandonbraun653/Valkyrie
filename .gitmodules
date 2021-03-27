@@ -1,0 +1,30 @@
+[submodule "lib/CommonTools"]
+	path = lib/CommonTools
+	url = https://github.com/brandonbraun653/CommonTools.git
+[submodule "lib/Chimera"]
+	path = lib/Chimera
+	url = https://github.com/brandonbraun653/Chimera.git
+[submodule "lib/ChimeraSim"]
+	path = lib/ChimeraSim
+	url = https://github.com/brandonbraun653/ChimeraSim.git
+[submodule "lib/Aurora"]
+	path = lib/Aurora
+	url = https://github.com/brandonbraun653/Aurora.git
+[submodule "lib/Apollo"]
+	path = lib/Apollo
+	url = https://github.com/brandonbraun653/Apollo.git
+[submodule "lib/FreeRTOS"]
+	path = lib/FreeRTOS
+	url = https://github.com/brandonbraun653/FreeRTOS.git
+[submodule "lib/Eigen"]
+	path = lib/Eigen
+	url = https://gitlab.com/libeigen/eigen.git
+[submodule "lib/nanopb"]
+	path = lib/nanopb
+	url = https://github.com/brandonbraun653/nanopb.git
+[submodule "lib/Ripple"]
+	path = lib/Ripple
+	url = https://github.com/brandonbraun653/Ripple.git
+[submodule "lib/Conda"]
+	path = lib/Conda
+	url = https://github.com/brandonbraun653/Conda.git
