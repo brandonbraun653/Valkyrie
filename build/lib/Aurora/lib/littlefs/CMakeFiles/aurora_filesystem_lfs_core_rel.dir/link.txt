@@ -1,0 +1,2 @@
+ar qc ../../../libaurora_filesystem_lfs_core_rel_dbg.a CMakeFiles/aurora_filesystem_lfs_core_rel.dir/lfs/lfs_util.c.o CMakeFiles/aurora_filesystem_lfs_core_rel.dir/lfs/lfs.c.o CMakeFiles/aurora_filesystem_lfs_core_rel.dir/lfs/bd/lfs_rambd.c.o
+ranlib ../../../libaurora_filesystem_lfs_core_rel_dbg.a

@@ -1,0 +1,2 @@
+ar qc ../../../../libchimera_algorithm_dbg.a CMakeFiles/chimera_algorithm.dir/register_optimizer.cpp.o
+ranlib ../../../../libchimera_algorithm_dbg.a

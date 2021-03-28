@@ -1,0 +1,2 @@
+ar qc ../../../../libchimera_buffer_rel_dbg.a CMakeFiles/chimera_buffer_rel.dir/chimera_buffer.cpp.o
+ranlib ../../../../libchimera_buffer_rel_dbg.a

@@ -1,0 +1,2 @@
+ar qc ../../../../../libchimera_peripheral_uart_dbg.a CMakeFiles/chimera_peripheral_uart.dir/chimera_uart.cpp.o
+ranlib ../../../../../libchimera_peripheral_uart_dbg.a

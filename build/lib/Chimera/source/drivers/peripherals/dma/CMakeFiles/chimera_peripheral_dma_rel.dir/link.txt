@@ -1,0 +1,2 @@
+ar qc ../../../../../libchimera_peripheral_dma_rel_dbg.a CMakeFiles/chimera_peripheral_dma_rel.dir/chimera_dma.cpp.o
+ranlib ../../../../../libchimera_peripheral_dma_rel_dbg.a

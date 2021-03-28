@@ -1,0 +1,2 @@
+ar qc ../../../libaurora_database_dbg.a CMakeFiles/aurora_database.dir/database_driver.cpp.o
+ranlib ../../../libaurora_database_dbg.a

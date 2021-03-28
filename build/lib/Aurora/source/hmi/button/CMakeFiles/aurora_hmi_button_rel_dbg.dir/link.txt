@@ -1,0 +1,2 @@
+ar qc ../../../../libaurora_hmi_button_rel_dbg_dbg.a CMakeFiles/aurora_hmi_button_rel_dbg.dir/hmi_button_driver.cpp.o
+ranlib ../../../../libaurora_hmi_button_rel_dbg_dbg.a

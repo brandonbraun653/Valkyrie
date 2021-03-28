@@ -1,0 +1,2 @@
+ar qc ../../../../../libchimera_peripheral_exti_rel_dbg.a CMakeFiles/chimera_peripheral_exti_rel.dir/chimera_exti.cpp.o
+ranlib ../../../../../libchimera_peripheral_exti_rel_dbg.a

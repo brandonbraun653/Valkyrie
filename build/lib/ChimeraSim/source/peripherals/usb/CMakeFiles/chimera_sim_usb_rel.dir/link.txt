@@ -1,0 +1,2 @@
+ar qc ../../../../libchimera_sim_usb_rel_dbg.a CMakeFiles/chimera_sim_usb_rel.dir/sim_chimera_usb.cpp.o
+ranlib ../../../../libchimera_sim_usb_rel_dbg.a

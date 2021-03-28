@@ -1,0 +1,2 @@
+ar qc ../../../../../libchimera_peripheral_clock_rel_dbg_dbg.a CMakeFiles/chimera_peripheral_clock_rel_dbg.dir/chimera_clock.cpp.o
+ranlib ../../../../../libchimera_peripheral_clock_rel_dbg_dbg.a

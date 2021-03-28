@@ -1,0 +1,2 @@
+ar qc ../../../libripple_user_intf_dbg_dbg.a CMakeFiles/ripple_user_intf_dbg.dir/user_init.cpp.o
+ranlib ../../../libripple_user_intf_dbg_dbg.a

@@ -1,0 +1,2 @@
+ar qc ../../libgmock_src_dbg.a CMakeFiles/gmock_src.dir/googletest/googlemock/src/gmock-cardinalities.cc.o CMakeFiles/gmock_src.dir/googletest/googlemock/src/gmock-internal-utils.cc.o CMakeFiles/gmock_src.dir/googletest/googlemock/src/gmock-matchers.cc.o CMakeFiles/gmock_src.dir/googletest/googlemock/src/gmock-spec-builders.cc.o CMakeFiles/gmock_src.dir/googletest/googlemock/src/gmock.cc.o
+ranlib ../../libgmock_src_dbg.a

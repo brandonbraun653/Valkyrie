@@ -1,0 +1,2 @@
+ar qc ../../../../../libchimera_threading_stl_dbg.a CMakeFiles/chimera_threading_stl.dir/stl_mutex.cpp.o CMakeFiles/chimera_threading_stl.dir/stl_semaphore.cpp.o CMakeFiles/chimera_threading_stl.dir/stl_thread.cpp.o
+ranlib ../../../../../libchimera_threading_stl_dbg.a

@@ -1,0 +1,2 @@
+ar qc ../../../../../libchimera_peripheral_usb_dbg.a CMakeFiles/chimera_peripheral_usb.dir/chimera_usb.cpp.o
+ranlib ../../../../../libchimera_peripheral_usb_dbg.a

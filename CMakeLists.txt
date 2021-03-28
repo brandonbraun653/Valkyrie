@@ -14,6 +14,9 @@ set(CPP_PLATFORM "freertos")
 include("${COMMON_TOOL_ROOT}/cmake/utility/embedded.cmake")
 include("lib/CommonTools/cmake/options/common.cmake")
 
+# For now hard code the sim target build settings
+add_subdirectory("lib/CommonTools/cmake/device/generic")
+
 # Override the linker command
 if(Toolchain::HAS_GCC_ARM_NONE_EABI OR Toolchain::HAS_GCC)
   include("lib/CommonTools/cmake/toolchains/linker_whole_archive.cmake")
@@ -66,8 +69,8 @@ gen_intf_lib(
     freertos_cfg
   INTF_INCLUDES
     "${PROJECT_ROOT}/src/config/freertos"
-  INTF_LIBRARIES
-    segger_sys_view_intf
+  #INTF_LIBRARIES
+    #segger_sys_view_intf
 
     # TODO: Will need to create the A8 variant
     #segger_sys_view_cortex_m4_freertos_intf

@@ -1,0 +1,2 @@
+ar qc ../../../../../libaurora_memory_nor_flash_rel_dbg_dbg.a CMakeFiles/aurora_memory_nor_flash_rel_dbg.dir/nor_generic_driver.cpp.o CMakeFiles/aurora_memory_nor_flash_rel_dbg.dir/manufacturer/nor_adesto.cpp.o
+ranlib ../../../../../libaurora_memory_nor_flash_rel_dbg_dbg.a

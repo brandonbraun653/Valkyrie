@@ -1,0 +1,2 @@
+ar qc ../../../../libaurora_memory_heap_rel_dbg_dbg.a CMakeFiles/aurora_memory_heap_rel_dbg.dir/heap.cpp.o
+ranlib ../../../../libaurora_memory_heap_rel_dbg_dbg.a

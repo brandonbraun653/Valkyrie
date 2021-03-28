@@ -1,0 +1,2 @@
+ar qc ../../../../libfreertos_cm4f_rel_dbg.a CMakeFiles/freertos_cm4f_rel.dir/arm_cm4f_port.c.o
+ranlib ../../../../libfreertos_cm4f_rel_dbg.a

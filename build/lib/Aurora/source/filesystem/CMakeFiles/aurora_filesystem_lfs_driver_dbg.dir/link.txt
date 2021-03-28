@@ -1,0 +1,2 @@
+ar qc ../../../libaurora_filesystem_lfs_driver_dbg_dbg.a CMakeFiles/aurora_filesystem_lfs_driver_dbg.dir/file_intf.cpp.o CMakeFiles/aurora_filesystem_lfs_driver_dbg.dir/littlefs/lfs_driver.cpp.o
+ranlib ../../../libaurora_filesystem_lfs_driver_dbg_dbg.a

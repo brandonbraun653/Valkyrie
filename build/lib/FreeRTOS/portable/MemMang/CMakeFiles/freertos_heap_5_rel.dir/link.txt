@@ -1,0 +1,2 @@
+ar qc ../../../libfreertos_heap_5_rel_dbg.a CMakeFiles/freertos_heap_5_rel.dir/heap_5.c.o
+ranlib ../../../libfreertos_heap_5_rel_dbg.a

@@ -1,0 +1,2 @@
+ar qc ../../../../libchimera_serial_dbg.a CMakeFiles/chimera_serial.dir/chimera_serial.cpp.o
+ranlib ../../../../libchimera_serial_dbg.a

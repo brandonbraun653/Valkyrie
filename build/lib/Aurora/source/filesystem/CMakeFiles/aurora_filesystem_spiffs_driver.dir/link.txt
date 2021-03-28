@@ -1,0 +1,2 @@
+ar qc ../../../libaurora_filesystem_spiffs_driver_dbg.a CMakeFiles/aurora_filesystem_spiffs_driver.dir/file_intf.cpp.o CMakeFiles/aurora_filesystem_spiffs_driver.dir/spiffs/spiffs_driver.cpp.o
+ranlib ../../../libaurora_filesystem_spiffs_driver_dbg.a

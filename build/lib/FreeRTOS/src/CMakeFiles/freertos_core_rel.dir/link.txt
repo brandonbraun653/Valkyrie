@@ -1,0 +1,2 @@
+ar qc ../../libfreertos_core_rel_dbg.a CMakeFiles/freertos_core_rel.dir/croutine.c.o CMakeFiles/freertos_core_rel.dir/event_groups.c.o CMakeFiles/freertos_core_rel.dir/list.c.o CMakeFiles/freertos_core_rel.dir/queue.c.o CMakeFiles/freertos_core_rel.dir/stream_buffer.c.o CMakeFiles/freertos_core_rel.dir/tasks.c.o CMakeFiles/freertos_core_rel.dir/timers.c.o
+ranlib ../../libfreertos_core_rel_dbg.a

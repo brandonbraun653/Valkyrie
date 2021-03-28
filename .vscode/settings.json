@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    "*.JLinkScript": "plaintext",
+    "thread": "cpp",
+    "usb": "cpp"
+  }
+}

@@ -1,0 +1,2 @@
+ar qc ../../../libbsp_nucleo_f446re_dbg.a CMakeFiles/bsp_nucleo_f446re.dir/nucleo_f446re.cpp.o
+ranlib ../../../libbsp_nucleo_f446re_dbg.a

@@ -1,0 +1,2 @@
+ar qc ../../../../libchimera_sim_usart_rel_dbg.a CMakeFiles/chimera_sim_usart_rel.dir/sim_chimera_usart.cpp.o
+ranlib ../../../../libchimera_sim_usart_rel_dbg.a

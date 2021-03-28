@@ -1,0 +1,2 @@
+ar qc ../../../../../libchimera_peripheral_power_rel_dbg_dbg.a CMakeFiles/chimera_peripheral_power_rel_dbg.dir/chimera_power.cpp.o
+ranlib ../../../../../libchimera_peripheral_power_rel_dbg_dbg.a

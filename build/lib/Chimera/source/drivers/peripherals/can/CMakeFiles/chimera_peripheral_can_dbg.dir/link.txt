@@ -1,0 +1,2 @@
+ar qc ../../../../../libchimera_peripheral_can_dbg_dbg.a CMakeFiles/chimera_peripheral_can_dbg.dir/chimera_can.cpp.o
+ranlib ../../../../../libchimera_peripheral_can_dbg_dbg.a

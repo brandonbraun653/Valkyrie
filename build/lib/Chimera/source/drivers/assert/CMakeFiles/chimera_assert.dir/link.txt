@@ -1,0 +1,2 @@
+ar qc ../../../../libchimera_assert_dbg.a CMakeFiles/chimera_assert.dir/assert_driver.cpp.o
+ranlib ../../../../libchimera_assert_dbg.a
