@@ -1,2 +1,0 @@
-ar qc ../../../../libchimera_sim_timer_rel_dbg.a CMakeFiles/chimera_sim_timer_rel.dir/sim_chimera_timer.cpp.o
-ranlib ../../../../libchimera_sim_timer_rel_dbg.a

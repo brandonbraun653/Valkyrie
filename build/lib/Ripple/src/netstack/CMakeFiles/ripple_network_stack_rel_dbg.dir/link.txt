@@ -1,2 +1,0 @@
-ar qc ../../../libripple_network_stack_rel_dbg_dbg.a CMakeFiles/ripple_network_stack_rel_dbg.dir/context.cpp.o CMakeFiles/ripple_network_stack_rel_dbg.dir/socket.cpp.o
-ranlib ../../../libripple_network_stack_rel_dbg_dbg.a

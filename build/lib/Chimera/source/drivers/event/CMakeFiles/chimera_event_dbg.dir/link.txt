@@ -1,2 +1,0 @@
-ar qc ../../../../libchimera_event_dbg_dbg.a CMakeFiles/chimera_event_dbg.dir/chimera_event.cpp.o
-ranlib ../../../../libchimera_event_dbg_dbg.a

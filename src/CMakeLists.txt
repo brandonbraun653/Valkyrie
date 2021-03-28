@@ -16,10 +16,39 @@ target_link_libraries(Valkyrie PRIVATE
   # Hardware Libraries
   chimera_core_dbg
 
+  # Segger System View (Make this only embedded)
+  # segger_sys_view
+  # segger_sys_view_intf
+  # segger_sys_view_cortex_m4_freertos
+
+  # Utility Libraries
+  aurora_core_dbg
+  aurora_hmi_dbg
+  aurora_logging_dbg
+  aurora_memory_dbg
+  aurora_database_dbg
+  aurora_datastore_dbg
+
   # Target Properties
   prj_device_target
   prj_build_target
 )
+
+
+# Sim Only Libraries
+if(Toolchain::HAS_GCC)
+  target_link_libraries(Valkyrie PRIVATE
+    # Testing & Mock Libraries
+    gmock_src
+    gtest_src
+
+    # Hardware sim
+    chimera_sim_core
+
+    # Simulator networking
+    zmq
+  )
+endif()
 
 # Copy the built executable to the common output directory for debugging
 add_custom_command(TARGET Valkyrie POST_BUILD

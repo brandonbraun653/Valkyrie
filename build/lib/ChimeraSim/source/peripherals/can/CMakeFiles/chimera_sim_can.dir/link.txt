@@ -1,2 +1,0 @@
-ar qc ../../../../libchimera_sim_can_dbg.a CMakeFiles/chimera_sim_can.dir/sim_chimera_can.cpp.o
-ranlib ../../../../libchimera_sim_can_dbg.a

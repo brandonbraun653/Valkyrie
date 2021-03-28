@@ -1,2 +1,0 @@
-ar qc ../../../../libchimera_sim_gpio_dbg.a CMakeFiles/chimera_sim_gpio.dir/sim_gpio_basic.cpp.o CMakeFiles/chimera_sim_gpio.dir/sim_gpio_controlled.cpp.o CMakeFiles/chimera_sim_gpio.dir/sim_gpio_driver.cpp.o
-ranlib ../../../../libchimera_sim_gpio_dbg.a

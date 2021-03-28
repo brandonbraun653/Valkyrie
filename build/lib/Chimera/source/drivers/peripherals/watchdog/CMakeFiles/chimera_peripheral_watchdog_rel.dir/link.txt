@@ -1,2 +1,0 @@
-ar qc ../../../../../libchimera_peripheral_watchdog_rel_dbg.a CMakeFiles/chimera_peripheral_watchdog_rel.dir/chimera_watchdog.cpp.o
-ranlib ../../../../../libchimera_peripheral_watchdog_rel_dbg.a

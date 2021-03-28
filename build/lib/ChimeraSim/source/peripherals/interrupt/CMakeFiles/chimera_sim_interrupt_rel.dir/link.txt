@@ -1,2 +1,0 @@
-ar qc ../../../../libchimera_sim_interrupt_rel_dbg.a CMakeFiles/chimera_sim_interrupt_rel.dir/sim_chimera_interrupt.cpp.o
-ranlib ../../../../libchimera_sim_interrupt_rel_dbg.a

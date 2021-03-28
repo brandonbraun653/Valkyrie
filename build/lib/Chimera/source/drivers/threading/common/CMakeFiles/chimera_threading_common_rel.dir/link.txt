@@ -1,2 +1,0 @@
-ar qc ../../../../../libchimera_threading_common_rel_dbg.a CMakeFiles/chimera_threading_common_rel.dir/threading_thread.cpp.o
-ranlib ../../../../../libchimera_threading_common_rel_dbg.a

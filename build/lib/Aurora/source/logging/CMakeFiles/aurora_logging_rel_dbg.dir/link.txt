@@ -1,2 +1,0 @@
-ar qc ../../../libaurora_logging_rel_dbg_dbg.a CMakeFiles/aurora_logging_rel_dbg.dir/logging_driver.cpp.o CMakeFiles/aurora_logging_rel_dbg.dir/sinks/sink_cout.cpp.o CMakeFiles/aurora_logging_rel_dbg.dir/sinks/sink_jlink.cpp.o CMakeFiles/aurora_logging_rel_dbg.dir/sinks/sink_serial.cpp.o CMakeFiles/aurora_logging_rel_dbg.dir/sinks/sink_vgdb_semihosting.cpp.o
-ranlib ../../../libaurora_logging_rel_dbg_dbg.a

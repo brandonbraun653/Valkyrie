@@ -1,2 +1,0 @@
-ar qc ../../../../libaurora_hmi_rotary_encoder_rel_dbg.a CMakeFiles/aurora_hmi_rotary_encoder_rel.dir/hmi_rotary_encoder_driver.cpp.o
-ranlib ../../../../libaurora_hmi_rotary_encoder_rel_dbg.a

@@ -1,2 +1,0 @@
-ar qc ../../../libchimera_sim_controller_rel_dbg_dbg.a CMakeFiles/chimera_sim_controller_rel_dbg.dir/ctrl_intf.cpp.o
-ranlib ../../../libchimera_sim_controller_rel_dbg_dbg.a

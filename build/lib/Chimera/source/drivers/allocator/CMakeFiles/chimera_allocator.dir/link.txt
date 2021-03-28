@@ -1,2 +1,0 @@
-ar qc ../../../../libchimera_allocator_dbg.a CMakeFiles/chimera_allocator.dir/chimera_allocator.cpp.o
-ranlib ../../../../libchimera_allocator_dbg.a

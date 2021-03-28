@@ -1,2 +1,0 @@
-ar qc ../../../libfreertos_heap_3_dbg.a CMakeFiles/freertos_heap_3.dir/heap_3.c.o
-ranlib ../../../libfreertos_heap_3_dbg.a

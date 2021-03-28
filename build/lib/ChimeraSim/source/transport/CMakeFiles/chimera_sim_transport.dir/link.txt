@@ -1,2 +1,0 @@
-ar qc ../../../libchimera_sim_transport_dbg.a CMakeFiles/chimera_sim_transport.dir/master_slave.cpp.o
-ranlib ../../../libchimera_sim_transport_dbg.a

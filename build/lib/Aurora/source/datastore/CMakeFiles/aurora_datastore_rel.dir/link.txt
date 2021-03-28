@@ -1,2 +1,0 @@
-ar qc ../../../libaurora_datastore_rel_dbg.a CMakeFiles/aurora_datastore_rel.dir/datastore_driver.cpp.o
-ranlib ../../../libaurora_datastore_rel_dbg.a

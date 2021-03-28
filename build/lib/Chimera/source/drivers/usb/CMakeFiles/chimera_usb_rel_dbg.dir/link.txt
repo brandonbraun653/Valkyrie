@@ -1,2 +1,0 @@
-ar qc ../../../../libchimera_usb_rel_dbg_dbg.a CMakeFiles/chimera_usb_rel_dbg.dir/usb_intf.cpp.o CMakeFiles/chimera_usb_rel_dbg.dir/usb_thread.cpp.o
-ranlib ../../../../libchimera_usb_rel_dbg_dbg.a

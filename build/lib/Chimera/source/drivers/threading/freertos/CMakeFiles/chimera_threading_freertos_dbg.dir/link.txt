@@ -1,2 +1,0 @@
-ar qc ../../../../../libchimera_threading_freertos_dbg_dbg.a CMakeFiles/chimera_threading_freertos_dbg.dir/freertos_hooks.cpp.o CMakeFiles/chimera_threading_freertos_dbg.dir/freertos_mutex.cpp.o CMakeFiles/chimera_threading_freertos_dbg.dir/freertos_semaphore.cpp.o CMakeFiles/chimera_threading_freertos_dbg.dir/freertos_thread.cpp.o
-ranlib ../../../../../libchimera_threading_freertos_dbg_dbg.a

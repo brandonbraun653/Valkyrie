@@ -1,2 +1,0 @@
-ar qc ../../../libaurora_filesystem_yaffs_driver_rel_dbg.a CMakeFiles/aurora_filesystem_yaffs_driver_rel.dir/file_intf.cpp.o CMakeFiles/aurora_filesystem_yaffs_driver_rel.dir/yaffs/yaffs2_driver.cpp.o
-ranlib ../../../libaurora_filesystem_yaffs_driver_rel_dbg.a

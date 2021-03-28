@@ -1,2 +1,0 @@
-ar qc ../../../libaurora_filesystem_spiffs_core_rel_dbg.a CMakeFiles/aurora_filesystem_spiffs_core_rel.dir/src/spiffs_cache.c.o CMakeFiles/aurora_filesystem_spiffs_core_rel.dir/src/spiffs_check.c.o CMakeFiles/aurora_filesystem_spiffs_core_rel.dir/src/spiffs_gc.c.o CMakeFiles/aurora_filesystem_spiffs_core_rel.dir/src/spiffs_hydrogen.c.o CMakeFiles/aurora_filesystem_spiffs_core_rel.dir/src/spiffs_nucleus.c.o
-ranlib ../../../libaurora_filesystem_spiffs_core_rel_dbg.a

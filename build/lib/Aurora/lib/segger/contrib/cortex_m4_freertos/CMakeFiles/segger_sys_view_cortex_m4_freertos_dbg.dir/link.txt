@@ -1,2 +1,0 @@
-ar qc ../../../../../libsegger_sys_view_cortex_m4_freertos_dbg_dbg.a CMakeFiles/segger_sys_view_cortex_m4_freertos_dbg.dir/sys_view_stubs.cpp.o CMakeFiles/segger_sys_view_cortex_m4_freertos_dbg.dir/SEGGER_SYSVIEW_FreeRTOS.c.o
-ranlib ../../../../../libsegger_sys_view_cortex_m4_freertos_dbg_dbg.a

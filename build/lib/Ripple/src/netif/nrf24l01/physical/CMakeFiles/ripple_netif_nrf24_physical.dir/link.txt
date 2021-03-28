@@ -1,2 +1,0 @@
-ar qc ../../../../../libripple_netif_nrf24_physical_dbg.a CMakeFiles/ripple_netif_nrf24_physical.dir/phy_device_driver.cpp.o CMakeFiles/ripple_netif_nrf24_physical.dir/phy_device_internal.cpp.o CMakeFiles/ripple_netif_nrf24_physical.dir/phy_fsm_controller.cpp.o CMakeFiles/ripple_netif_nrf24_physical.dir/virtual_driver/phy_device_driver_shockburst.cpp.o CMakeFiles/ripple_netif_nrf24_physical.dir/virtual_driver/phy_device_driver_virtual.cpp.o
-ranlib ../../../../../libripple_netif_nrf24_physical_dbg.a

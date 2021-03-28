@@ -1,2 +1,0 @@
-ar qc ../../../libripple_shared_dbg_dbg.a CMakeFiles/ripple_shared_dbg.dir/cmn_utils.cpp.o
-ranlib ../../../libripple_shared_dbg_dbg.a

@@ -1,2 +1,0 @@
-ar qc ../../../../libchimera_sim_watchdog_rel_dbg_dbg.a CMakeFiles/chimera_sim_watchdog_rel_dbg.dir/sim_chimera_watchdog.cpp.o CMakeFiles/chimera_sim_watchdog_rel_dbg.dir/sim_chimera_iwdg.cpp.o
-ranlib ../../../../libchimera_sim_watchdog_rel_dbg_dbg.a

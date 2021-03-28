@@ -1,2 +1,0 @@
-ar qc ../../../../../libchimera_peripheral_timer_dbg.a CMakeFiles/chimera_peripheral_timer.dir/chimera_timer.cpp.o
-ranlib ../../../../../libchimera_peripheral_timer_dbg.a

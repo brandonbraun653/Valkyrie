@@ -1,2 +1,0 @@
-ar qc ../../../../libchimera_utilities_dbg.a CMakeFiles/chimera_utilities.dir/chimera_utilities.cpp.o
-ranlib ../../../../libchimera_utilities_dbg.a

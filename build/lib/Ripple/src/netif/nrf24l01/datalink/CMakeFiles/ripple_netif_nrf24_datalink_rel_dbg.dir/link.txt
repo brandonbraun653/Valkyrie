@@ -1,2 +1,0 @@
-ar qc ../../../../../libripple_netif_nrf24_datalink_rel_dbg_dbg.a CMakeFiles/ripple_netif_nrf24_datalink_rel_dbg.dir/data_link_arp.cpp.o CMakeFiles/ripple_netif_nrf24_datalink_rel_dbg.dir/data_link_frame.cpp.o CMakeFiles/ripple_netif_nrf24_datalink_rel_dbg.dir/data_link_service.cpp.o
-ranlib ../../../../../libripple_netif_nrf24_datalink_rel_dbg_dbg.a

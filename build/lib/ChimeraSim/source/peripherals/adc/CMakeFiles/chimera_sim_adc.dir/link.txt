@@ -1,2 +1,0 @@
-ar qc ../../../../libchimera_sim_adc_dbg.a CMakeFiles/chimera_sim_adc.dir/sim_chimera_adc.cpp.o
-ranlib ../../../../libchimera_sim_adc_dbg.a

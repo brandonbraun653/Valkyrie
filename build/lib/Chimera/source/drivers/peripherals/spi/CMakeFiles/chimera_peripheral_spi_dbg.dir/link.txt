@@ -1,2 +1,0 @@
-ar qc ../../../../../libchimera_peripheral_spi_dbg_dbg.a CMakeFiles/chimera_peripheral_spi_dbg.dir/chimera_spi.cpp.o
-ranlib ../../../../../libchimera_peripheral_spi_dbg_dbg.a

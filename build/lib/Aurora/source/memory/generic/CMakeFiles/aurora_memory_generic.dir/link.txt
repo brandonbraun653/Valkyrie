@@ -1,2 +1,0 @@
-ar qc ../../../../libaurora_memory_generic_dbg.a CMakeFiles/aurora_memory_generic.dir/generic_utils.cpp.o
-ranlib ../../../../libaurora_memory_generic_dbg.a

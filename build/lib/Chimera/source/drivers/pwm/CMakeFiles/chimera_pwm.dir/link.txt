@@ -1,2 +1,0 @@
-ar qc ../../../../libchimera_pwm_dbg.a CMakeFiles/chimera_pwm.dir/chimera_pwm.cpp.o
-ranlib ../../../../libchimera_pwm_dbg.a

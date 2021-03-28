@@ -1,2 +1,0 @@
-ar qc ../../../libaurora_math_rel_dbg.a CMakeFiles/aurora_math_rel.dir/conversion.cpp.o CMakeFiles/aurora_math_rel.dir/math.cpp.o
-ranlib ../../../libaurora_math_rel_dbg.a

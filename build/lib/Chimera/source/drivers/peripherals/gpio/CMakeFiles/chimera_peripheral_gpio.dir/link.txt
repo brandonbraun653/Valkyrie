@@ -1,2 +1,0 @@
-ar qc ../../../../../libchimera_peripheral_gpio_dbg.a CMakeFiles/chimera_peripheral_gpio.dir/chimera_gpio.cpp.o
-ranlib ../../../../../libchimera_peripheral_gpio_dbg.a

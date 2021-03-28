@@ -1,2 +1,0 @@
-ar qc ../../libgtest_main_dbg.a CMakeFiles/gtest_main.dir/googletest/googletest/src/gtest_main.cc.o
-ranlib ../../libgtest_main_dbg.a

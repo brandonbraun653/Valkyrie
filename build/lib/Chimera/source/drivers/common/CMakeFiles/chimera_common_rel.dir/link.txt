@@ -1,2 +1,0 @@
-ar qc ../../../../libchimera_common_rel_dbg.a CMakeFiles/chimera_common_rel.dir/boost_stubs.cpp.o CMakeFiles/chimera_common_rel.dir/chimera.cpp.o CMakeFiles/chimera_common_rel.dir/compiler_intf.cpp.o
-ranlib ../../../../libchimera_common_rel_dbg.a

@@ -1,2 +1,0 @@
-ar qc ../../../../libchimera_sim_spi_rel_dbg_dbg.a CMakeFiles/chimera_sim_spi_rel_dbg.dir/sim_spi_basic.cpp.o CMakeFiles/chimera_sim_spi_rel_dbg.dir/sim_spi_driver.cpp.o CMakeFiles/chimera_sim_spi_rel_dbg.dir/sim_spi_networked.cpp.o
-ranlib ../../../../libchimera_sim_spi_rel_dbg_dbg.a
