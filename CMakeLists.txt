@@ -40,6 +40,7 @@ set(NANO_PB_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/lib/nanopb" CACHE STRING "")
 # Import common packages and projects
 # ====================================================
 find_package(Boost REQUIRED)
+add_subdirectory("lib/Apollo")
 add_subdirectory("lib/Aurora")
 add_subdirectory("lib/Chimera")
 add_subdirectory("lib/ChimeraSim")
@@ -68,12 +69,33 @@ gen_intf_lib(
   TARGET
     freertos_cfg
   INTF_INCLUDES
-    "${PROJECT_ROOT}/src/config/freertos"
-  #INTF_LIBRARIES
-    #segger_sys_view_intf
+    "${PROJECT_ROOT}/src/cfg/freertos"
+    "${PROJECT_ROOT}/lib/Aurora/lib/segger/contrib/cortex_m4_freertos"
+  INTF_LIBRARIES
+    segger_sys_view_intf
 
     # TODO: Will need to create the A8 variant
     #segger_sys_view_cortex_m4_freertos_intf
+  EXPORT_DIR
+    "${PROJECT_BINARY_DIR}/Project"
+)
+
+gen_intf_lib(
+  TARGET
+    freertos_port
+  INTF_INCLUDES
+    "${PROJECT_ROOT}/lib/FreeRTOS/portable/GCC/Posix"
+  INTF_DEFINES
+    FREERTOS_CFG_PORT_POSIX=1
+  EXPORT_DIR
+    "${PROJECT_BINARY_DIR}/Project"
+)
+
+gen_intf_lib(
+  TARGET
+    freertos_heap
+  INTF_DEFINES
+    FREERTOS_CFG_MEM_MANG_HEAP4=1
   EXPORT_DIR
     "${PROJECT_BINARY_DIR}/Project"
 )

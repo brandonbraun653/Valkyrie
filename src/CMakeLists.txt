@@ -13,6 +13,9 @@ target_link_libraries(Valkyrie PRIVATE
   Boost::boost
   chimera_intf_inc
 
+  # Apollo
+  apollo_freertos_hooks
+
   # Hardware Libraries
   chimera_core_dbg
 
@@ -44,6 +47,13 @@ if(Toolchain::HAS_GCC)
 
     # Hardware sim
     chimera_sim_core
+
+    # RTOS
+    freertos_core
+    freertos_posix_port
+    freertos_heap_4
+    freertos_intf_inc_all
+    pthread
 
     # Simulator networking
     zmq

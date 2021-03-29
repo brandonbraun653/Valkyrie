@@ -45,7 +45,8 @@
         "defaultSimDefines": [
             "SIMULATOR",
             "CHIMERA_SIMULATOR",
-            "USING_NATIVE_THREADS",
+            "USING_FREERTOS_THREADS",
+            "FREERTOS_CFG_PORT_POSIX=1",
             "${defaultDefines}"
         ],
         "defaultEmbeddedCStandard": "gnu17",

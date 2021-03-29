@@ -51,6 +51,7 @@ namespace Valkyrie::Boot
     cfg.priority                  = Priority::LEVEL_3;
     cfg.stackWords                = 1024;
     cfg.arg                       = nullptr;
+    cfg.type                      = TaskInitType::DYNAMIC;
 
     Task hw;
     hw.create( cfg );
