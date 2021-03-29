@@ -10,6 +10,7 @@
             "${workspaceFolder}/lib/Aurora/lib/embedded_template_library/etl/include",
             "${workspaceFolder}/lib/Aurora/lib/littlefs/lfs",
             "${workspaceFolder}/lib/Aurora/lib/segger/Config",
+            "${workspaceFolder}/lib/Aurora/lib/segger/contrib/cortex_m4_freertos",
             "${workspaceFolder}/lib/Aurora/lib/segger/SEGGER",
             "${workspaceFolder}/lib/Aurora/lib/segger/SEGGER/Syscalls",
             "${workspaceFolder}/lib/Aurora/lib/spiffs/src",
@@ -27,7 +28,8 @@
             "${workspaceFolder}/lib/FreeRTOS/portable/GCC/ARM_CM4F",
             "${workspaceFolder}/lib/Ripple/inc",
             "${workspaceFolder}/lib/nanopb",
-            "${workspaceFolder}/src"
+            "${workspaceFolder}/src",
+            "${workspaceFolder}/src/cfg/freertos"
         ],
         "defaultDefines": [
             "DEBUG",
