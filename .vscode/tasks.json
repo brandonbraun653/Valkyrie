@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "CMake Clean",
+      "type": "shell",
+      "command": "rm -rf ${workspaceFolder}/build/*",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build Valkyrie",
+      "type": "shell",
+      "command": "cmake --build . --target Valkyrie -j8",
+      "options": {
+        "cwd": "${workspaceFolder}/build"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Configure Sim: FreeRTOS",
+      "type": "shell",
+      "command": "./cfg_bld_sim_freertos.sh",
+      "options": {
+        "cwd": "${workspaceFolder}/tools/scripts"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
