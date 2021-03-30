@@ -2,6 +2,10 @@
   "files.associations": {
     "*.JLinkScript": "plaintext",
     "thread": "cpp",
-    "usb": "cpp"
+    "usb": "cpp",
+    "*.ipp": "cpp",
+    "logging": "cpp",
+    "sstream": "cpp",
+    "regex": "cpp"
   }
 }

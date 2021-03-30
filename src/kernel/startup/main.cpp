@@ -8,6 +8,9 @@
  *  2021 | Brandon Braun | brandonbraun653@gmail.com
  *******************************************************************************/
 
+/* Aurora Logging */
+#include <Aurora/logging>
+
 /* Chimera Includes */
 #include <Chimera/common>
 #include <Chimera/system>
@@ -32,6 +35,7 @@ int main( void )
   Power up the non-OS aspects of the system
   -------------------------------------------------*/
   Valkyrie::Boot::sysPowerUp();
+  LOG_DEBUG( "Hello World\n" );
 
   /*-------------------------------------------------
   Power up the tasking system. Should never return.
