@@ -49,6 +49,7 @@ add_subdirectory("lib/CommonTools/googletest")
 add_subdirectory("lib/FreeRTOS")
 add_subdirectory("lib/Ripple")
 add_subdirectory("lib/nanopb")
+add_subdirectory("test")
 
 # ====================================================
 # Project Exports

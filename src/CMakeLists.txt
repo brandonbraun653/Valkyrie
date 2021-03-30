@@ -1,7 +1,5 @@
 include("${COMMON_TOOL_ROOT}/cmake/utility/embedded.cmake")
 
-
-
 add_executable(Valkyrie
   kernel/startup/main.cpp
   kernel/startup/sys_init.cpp
