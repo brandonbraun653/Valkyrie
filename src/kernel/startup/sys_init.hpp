@@ -24,7 +24,7 @@ namespace Valkyrie::Boot
    * @brief Creates all system tasks for Valkyrie to boot
    *
    */
-  void taskCreate();
+  void createTasks();
 }    // namespace Valkyrie::Boot
 
 #endif /* !VALKYRIE_STARTUP_SYSTEM_INIT_HPP */

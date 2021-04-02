@@ -94,7 +94,7 @@ namespace Valkyrie::Boot
     Registry::Boot::initRegistry();
   }
 
-  void taskCreate()
+  void createTasks()
   {
     using namespace Chimera::Thread;
 

@@ -35,12 +35,11 @@ int main( void )
   Power up the non-OS aspects of the system
   -------------------------------------------------*/
   Valkyrie::Boot::sysPowerUp();
-  LOG_DEBUG( "Hello World\n" );
 
   /*-------------------------------------------------
   Power up the tasking system. Should never return.
   -------------------------------------------------*/
-  Valkyrie::Boot::taskCreate();
+  Valkyrie::Boot::createTasks();
   Chimera::Thread::startScheduler();
 
   /*-------------------------------------------------
