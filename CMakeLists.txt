@@ -49,6 +49,7 @@ add_subdirectory("lib/CommonTools/googletest")
 add_subdirectory("lib/FreeRTOS")
 add_subdirectory("lib/Ripple")
 add_subdirectory("lib/nanopb")
+add_subdirectory("lib/VirtualDrone")
 add_subdirectory("test")
 
 # ====================================================
@@ -60,7 +61,12 @@ gen_intf_lib(
     project_inc
   INTF_INCLUDES
     "${PROJECT_ROOT}"
+    "${PROJECT_ROOT}/include"
     "${PROJECT_ROOT}/src/config"
+
+    # Give these their own targets later
+    "${PROJECT_ROOT}/lib/msgpack/include"
+    "${PROJECT_ROOT}/lib/cppzmq"
   EXPORT_DIR
     "${PROJECT_BINARY_DIR}/Project"
 )

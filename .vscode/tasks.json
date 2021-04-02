@@ -44,6 +44,15 @@
       "problemMatcher": []
     },
     {
+      "label": "Configure Sim: OS",
+      "type": "shell",
+      "command": "./cfg_bld_sim_os.sh",
+      "options": {
+        "cwd": "${workspaceFolder}/tools/scripts"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "Configure Tests",
       "type": "shell",
       "command": "./cfg_bld_tests.sh",

@@ -15,19 +15,21 @@
 #include <Chimera/common>
 #include <Chimera/thread>
 
-// Temp Includes
-#include <iostream>
+/* Valkyrie Includes */
+#include <Valkyrie/debug>
+#include <Valkyrie/kernel>
+
+// Testing only
+#include "zmq.hpp"
+#include "msgpack.hpp"
+
+#include "pb.h"
+#include "pb_decode.h"
+#include "ahrs.pb.h"
+
 
 namespace Valkyrie::Boot
 {
-  /*-------------------------------------------------------------------------------
-  Static Data
-  -------------------------------------------------------------------------------*/
-#if defined( CHIMERA_SIMULATOR )
-  static Aurora::Logging::CoutSink s_console_sink;
-  static Aurora::Logging::SinkHandle s_console_handle;
-#endif
-
   /**
    * @brief A testing thread for the sim
    *
@@ -35,46 +37,61 @@ namespace Valkyrie::Boot
    */
   static void HelloWorld( void *unused )
   {
-    LOG_INFO( "Booting system" );
+    LOG_INFO( "Booting system\r\n" );
+
+    std::string_view topic = "gyro";
+
+    zmq::context_t context(1);
+    zmq::socket_t subscriber( context, ZMQ_SUB );
+    subscriber.connect("tcp://127.0.0.1:50024");
+    subscriber.setsockopt(ZMQ_SUBSCRIBE, topic.data(), topic.length() );
+
+    std::array<uint8_t, 100> rx_data;
+    std::array<char, 20> rx_topic;
+    rx_data.fill( 0 );
+    rx_topic.fill( 0 );
 
     while ( true )
     {
-      LOG_TRACE( "Hello world" );
+      zmq::message_t update;
+      subscriber.recv( &update );
+
+      memcpy( rx_topic.data(), update.data(), update.size() );
+      if( strcmp( rx_topic.data(), topic.data() ) == 0 )
+      {
+        subscriber.recv( &update );
+        memcpy( rx_data.data(), update.data(), update.size() );
+        pb_istream_t input = pb_istream_from_buffer( rx_data.data(), update.size() );
+
+
+        GyroSample gyro_data = {};
+        auto result = pb_decode( &input, GyroSample_fields, &gyro_data );
+        LOG_TRACE( "Got Gyro -> x:%1.4f\ty:%1.4f\tz:%1.4f\r\n", gyro_data.x, gyro_data.y, gyro_data.z );
+
+        //
+        // msgpack::object_handle oh = msgpack::unpack( rx_data.data(), update.size() );
+        // msgpack::object deserialized = oh.get();
+        // float my_float = deserialized.via.f64;
+        // LOG_TRACE( "gyro_x: %1.4f\r\n", my_float );
+      }
+
       Chimera::delayMilliseconds( 1000 );
+      rx_data.fill(0);
+      rx_topic.fill(0);
     }
   }
 
   void sysPowerUp()
   {
-    using namespace Aurora::Logging;
+    /*-------------------------------------------------
+    Power up the debug system
+    -------------------------------------------------*/
+    Log::Boot::initLoggers();
 
     /*-------------------------------------------------
-    Initialize the framework
+    Power up the database/registry system
     -------------------------------------------------*/
-    initialize();
-    setGlobalLogLevel( Level::LVL_TRACE );
-
-    /*-------------------------------------------------
-    Initialize the console sink
-    -------------------------------------------------*/
-#if defined( SIMULATOR )
-    s_console_sink.setLogLevel( Level::LVL_TRACE );
-    s_console_sink.enable();
-    s_console_sink.setName( "ConsoleLogger" );
-
-    if ( !s_console_handle )
-    {
-      s_console_handle = SinkHandle( &s_console_sink );
-      registerSink( s_console_handle );
-    }
-#endif
-
-    /*-------------------------------------------------
-    Set the default sink to use
-    -------------------------------------------------*/
-#if defined( SIMULATOR )
-    setRootSink( s_console_handle );
-#endif
+    Registry::Boot::initRegistry();
   }
 
   void taskCreate()

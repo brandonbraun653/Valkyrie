@@ -1,6 +1,13 @@
 {
-  "version":"0.2.0",
+  "version": "0.2.0",
   "configurations": [
+    {
+      "name": "Python: Current File",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal"
+    },
     {
       "name": "Simulator (gdb)",
       "type": "cppdbg",
@@ -12,11 +19,11 @@
       "environment": [],
       "MIMode": "gdb",
       "setupCommands": [
-          {
-              "description": "Enable pretty-printing for gdb",
-              "text": "-enable-pretty-printing",
-              "ignoreFailures": true
-          }
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
       ]
     }
   ]

@@ -1,4 +1,3 @@
-
 # Move up to the repo root
 cd ../../
 

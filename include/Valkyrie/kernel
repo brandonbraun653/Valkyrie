@@ -1,0 +1,19 @@
+/********************************************************************************
+ *  File Name:
+ *    kernel
+ *
+ *  Description:
+ *    Valkyrie includes for the kernel module headers
+ *
+ *  2021 | Brandon Braun | brandonbraun653@gmail.com
+ ********************************************************************************/
+
+#pragma once
+#ifndef VALKYRIE_KERNEL_INCLUDES
+#define VALKYRIE_KERNEL_INCLUDES
+
+/* Data Module */
+#include <src/kernel/data/parameters.hpp>
+#include <src/kernel/data/registry_data.hpp>
+
+#endif /* !VALKYRIE_KERNEL_INCLUDES */

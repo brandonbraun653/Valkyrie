@@ -1,4 +1,7 @@
+# Move up to the repo root
+cd ../../
 
+# Create the build directory
 mkdir -p ./build
 cd ./build
 

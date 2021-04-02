@@ -28,3 +28,12 @@
 [submodule "lib/Conda"]
 	path = lib/Conda
 	url = https://github.com/brandonbraun653/Conda.git
+[submodule "lib/VirtualDrone"]
+	path = lib/VirtualDrone
+	url = https://github.com/brandonbraun653/VirtualDrone.git
+[submodule "lib/msgpack"]
+	path = lib/msgpack
+	url = https://github.com/msgpack/msgpack-c.git
+[submodule "lib/cppzmq"]
+	path = lib/cppzmq
+	url = https://github.com/zeromq/cppzmq.git

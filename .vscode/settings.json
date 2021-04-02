@@ -6,6 +6,9 @@
     "*.ipp": "cpp",
     "logging": "cpp",
     "sstream": "cpp",
-    "regex": "cpp"
-  }
+    "regex": "cpp",
+    "database": "cpp",
+    "string_view": "cpp"
+  },
+  "python.pythonPath": "/home/braunbr/programs/anaconda3/envs/quadcopter/bin/python"
 }

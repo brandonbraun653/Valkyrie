@@ -1,0 +1,17 @@
+/********************************************************************************
+ *  File Name:
+ *    debug
+ *
+ *  Description:
+ *    Valkyrie includes for the debug module headers
+ *
+ *  2021 | Brandon Braun | brandonbraun653@gmail.com
+ ********************************************************************************/
+
+#pragma once
+#ifndef VALKYRIE_DEBUG_INCLUDES
+#define VALKYRIE_DEBUG_INCLUDES
+
+#include <src/dbg/log/logger.hpp>
+
+#endif /* !VALKYRIE_DEBUG_INCLUDES */

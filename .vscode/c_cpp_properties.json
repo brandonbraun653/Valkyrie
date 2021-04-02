@@ -2,7 +2,9 @@
     "env": {
         "defaultIncludePaths": [
             "${workspaceFolder}",
+            "${workspaceFolder}/include",
             "${workspaceFolder}/lib",
+            "${workspaceFolder}/lib/**",
             "${workspaceFolder}/lib/Aurora/include",
             "${workspaceFolder}/lib/Aurora/include",
             "${workspaceFolder}/lib/Aurora/include/../",
