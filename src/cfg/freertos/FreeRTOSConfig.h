@@ -98,7 +98,7 @@ Figure out how much RAM we want to allocate
 #endif
 
 #elif defined( SIMULATOR )
-#define configTOTAL_HEAP_SIZE ( ( size_t )( 16 * 1024 * 1024 ) ) // 16MB
+#define configTOTAL_HEAP_SIZE ( ( size_t )( 32 * 1024 * 1024 ) ) // 16MB
 #else
 #error Cannot configure FreeRTOS heap. Unknown environment.
 #endif

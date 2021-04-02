@@ -1,0 +1,18 @@
+/********************************************************************************
+ *  File Name:
+ *    sensors
+ *
+ *  Description:
+ *    Valkyrie includes for the sensors module headers
+ *
+ *  2021 | Brandon Braun | brandonbraun653@gmail.com
+ ********************************************************************************/
+
+#pragma once
+#ifndef VALKYRIE_SENSORS_INCLUDES
+#define VALKYRIE_SENSORS_INCLUDES
+
+#include <src/sensors/accel_sensor.hpp>
+#include <src/sensors/virtual_sensor.hpp>
+
+#endif /* !VALKYRIE_SENSORS_INCLUDES */

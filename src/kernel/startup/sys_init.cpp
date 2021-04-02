@@ -18,18 +18,17 @@
 /* Valkyrie Includes */
 #include <Valkyrie/debug>
 #include <Valkyrie/kernel>
+#include <Valkyrie/sensors>
 
 // Testing only
-#include "zmq.hpp"
-#include "msgpack.hpp"
-
-#include "pb.h"
-#include "pb_decode.h"
-#include "ahrs.pb.h"
-
+#include <etl/delegate.h>
+#include <Valkyrie/sensors>
+#include <thread>
 
 namespace Valkyrie::Boot
 {
+  static std::thread zmqThread;
+
   /**
    * @brief A testing thread for the sim
    *
@@ -39,45 +38,25 @@ namespace Valkyrie::Boot
   {
     LOG_INFO( "Booting system\r\n" );
 
-    std::string_view topic = "gyro";
+    Valkyrie::Sensor::Accel::initialize();
 
-    zmq::context_t context(1);
-    zmq::socket_t subscriber( context, ZMQ_SUB );
-    subscriber.connect("tcp://127.0.0.1:50024");
-    subscriber.setsockopt(ZMQ_SUBSCRIBE, topic.data(), topic.length() );
-
-    std::array<uint8_t, 100> rx_data;
-    std::array<char, 20> rx_topic;
-    rx_data.fill( 0 );
-    rx_topic.fill( 0 );
 
     while ( true )
     {
-      zmq::message_t update;
-      subscriber.recv( &update );
-
-      memcpy( rx_topic.data(), update.data(), update.size() );
-      if( strcmp( rx_topic.data(), topic.data() ) == 0 )
-      {
-        subscriber.recv( &update );
-        memcpy( rx_data.data(), update.data(), update.size() );
-        pb_istream_t input = pb_istream_from_buffer( rx_data.data(), update.size() );
-
-
-        GyroSample gyro_data = {};
-        auto result = pb_decode( &input, GyroSample_fields, &gyro_data );
-        LOG_TRACE( "Got Gyro -> x:%1.4f\ty:%1.4f\tz:%1.4f\r\n", gyro_data.x, gyro_data.y, gyro_data.z );
-
-        //
-        // msgpack::object_handle oh = msgpack::unpack( rx_data.data(), update.size() );
-        // msgpack::object deserialized = oh.get();
-        // float my_float = deserialized.via.f64;
-        // LOG_TRACE( "gyro_x: %1.4f\r\n", my_float );
-      }
-
       Chimera::delayMilliseconds( 1000 );
-      rx_data.fill(0);
-      rx_topic.fill(0);
+    }
+  }
+
+  static void HelloUniverse( void *unused )
+  {
+
+    Chimera::delayMilliseconds( 100 );
+    auto sensor = Valkyrie::Sensor::Accel::getInstance( 0 );
+
+    while( true )
+    {
+      sensor->measure();
+      Chimera::delayMilliseconds( 50 );
     }
   }
 
@@ -92,16 +71,24 @@ namespace Valkyrie::Boot
     Power up the database/registry system
     -------------------------------------------------*/
     Registry::Boot::initRegistry();
+
+    /*-------------------------------------------------
+    If running on a simulator, power up communication
+    layer between the sim and this project.
+    -------------------------------------------------*/
+#if defined( SIMULATOR )
+    Sensor::Virtual::initTransport( 8 );
+#endif /* SIMULATOR */
   }
 
   void createTasks()
   {
     using namespace Chimera::Thread;
+    TaskConfig cfg;
 
     /*-------------------------------------------------
-    Just for testing, create the hello world thread
+    Test thread 0
     -------------------------------------------------*/
-    TaskConfig cfg;
     cfg.function.callable.pointer = HelloWorld;
     cfg.function.type             = FunctorType::C_STYLE;
     cfg.name                      = "HelloWorld";
@@ -113,6 +100,21 @@ namespace Valkyrie::Boot
     Task hw;
     hw.create( cfg );
     hw.start();
+
+    /*-------------------------------------------------
+    Test thread 1
+    -------------------------------------------------*/
+    cfg.function.callable.pointer = HelloUniverse;
+    cfg.function.type             = FunctorType::C_STYLE;
+    cfg.name                      = "HelloUniverse";
+    cfg.priority                  = Priority::LEVEL_3;
+    cfg.stackWords                = 1024;
+    cfg.arg                       = nullptr;
+    cfg.type                      = TaskInitType::DYNAMIC;
+
+    Task hu;
+    hu.create( cfg );
+    hu.start();
   }
 
 }    // namespace Valkyrie::Boot
