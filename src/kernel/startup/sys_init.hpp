@@ -16,15 +16,15 @@ namespace Valkyrie::Boot
 {
   /**
    * @brief Powers up system aspects that don't require an RTOS
-   *
    */
   void sysPowerUp();
 
   /**
-   * @brief Creates all system tasks for Valkyrie to boot
-   *
+   * @brief Creates system tasks for Valkyrie to boot
+   * Initializes the background thread, which will boot other
+   * threads once the tasking system has started.
    */
-  void createTasks();
+  void createBackgroundThread();
 }    // namespace Valkyrie::Boot
 
 #endif /* !VALKYRIE_STARTUP_SYSTEM_INIT_HPP */

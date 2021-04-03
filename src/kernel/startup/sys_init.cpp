@@ -19,47 +19,13 @@
 #include <Valkyrie/debug>
 #include <Valkyrie/kernel>
 #include <Valkyrie/sensors>
-
-// Testing only
-#include <etl/delegate.h>
-#include <Valkyrie/sensors>
-#include <thread>
+#include <src/kernel/threads/thread_listing.hpp>
 
 namespace Valkyrie::Boot
 {
-  static std::thread zmqThread;
-
-  /**
-   * @brief A testing thread for the sim
-   *
-   * @param unused
-   */
-  static void HelloWorld( void *unused )
-  {
-    LOG_INFO( "Booting system\r\n" );
-
-    Valkyrie::Sensor::Accel::initialize();
-
-
-    while ( true )
-    {
-      Chimera::delayMilliseconds( 1000 );
-    }
-  }
-
-  static void HelloUniverse( void *unused )
-  {
-
-    Chimera::delayMilliseconds( 100 );
-    auto sensor = Valkyrie::Sensor::Accel::getInstance( 0 );
-
-    while( true )
-    {
-      sensor->measure();
-      Chimera::delayMilliseconds( 50 );
-    }
-  }
-
+  /*-------------------------------------------------------------------------------
+  Public Functions
+  -------------------------------------------------------------------------------*/
   void sysPowerUp()
   {
     /*-------------------------------------------------
@@ -81,40 +47,28 @@ namespace Valkyrie::Boot
 #endif /* SIMULATOR */
   }
 
-  void createTasks()
+
+  void createBackgroundThread()
   {
     using namespace Chimera::Thread;
+    using namespace Valkyrie::Thread;
+
+    /*-------------------------------------------------
+    Register the background thread. This will in turn
+    boot the remaining system threads once it starts.
+    -------------------------------------------------*/
     TaskConfig cfg;
-
-    /*-------------------------------------------------
-    Test thread 0
-    -------------------------------------------------*/
-    cfg.function.callable.pointer = HelloWorld;
+    cfg.function.callable.pointer = Background::main;
     cfg.function.type             = FunctorType::C_STYLE;
-    cfg.name                      = "HelloWorld";
-    cfg.priority                  = Priority::LEVEL_3;
-    cfg.stackWords                = 1024;
+    cfg.name                      = Background::Name.data();
+    cfg.priority                  = Priority::LEVEL_1;
+    cfg.stackWords                = Background::StackDepth;
     cfg.arg                       = nullptr;
     cfg.type                      = TaskInitType::DYNAMIC;
 
-    Task hw;
-    hw.create( cfg );
-    hw.start();
-
-    /*-------------------------------------------------
-    Test thread 1
-    -------------------------------------------------*/
-    cfg.function.callable.pointer = HelloUniverse;
-    cfg.function.type             = FunctorType::C_STYLE;
-    cfg.name                      = "HelloUniverse";
-    cfg.priority                  = Priority::LEVEL_3;
-    cfg.stackWords                = 1024;
-    cfg.arg                       = nullptr;
-    cfg.type                      = TaskInitType::DYNAMIC;
-
-    Task hu;
-    hu.create( cfg );
-    hu.start();
+    Task background;
+    background.create( cfg );
+    background.start();
   }
 
 }    // namespace Valkyrie::Boot

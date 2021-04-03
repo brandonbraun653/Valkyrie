@@ -39,7 +39,7 @@ int main( void )
   /*-------------------------------------------------
   Power up the tasking system. Should never return.
   -------------------------------------------------*/
-  Valkyrie::Boot::createTasks();
+  Valkyrie::Boot::createBackgroundThread();
   Chimera::Thread::startScheduler();
 
   /*-------------------------------------------------
