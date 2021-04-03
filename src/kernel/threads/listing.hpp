@@ -17,6 +17,18 @@
 
 namespace Valkyrie::Thread
 {
+  /*-------------------------------------------------------------------------------
+  Threads:
+
+  - System power up (background thread)
+    - This thread should start all other threads
+  - Sensor measurement
+    - Read sensors at various periods
+    - Pushes data into the system database
+  - Health Monitor
+    - Reads system state and ensures it's all a-ok
+
+  -------------------------------------------------------------------------------*/
 
 }  // namespace Valkyrie::Thread
 
