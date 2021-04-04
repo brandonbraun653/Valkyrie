@@ -10,6 +10,7 @@
 
 /* Aurora Includes */
 #include <Aurora/logging>
+#include <Aurora/utility>
 
 /* Chimera Includes */
 #include <Chimera/thread>
@@ -21,19 +22,45 @@
 namespace Valkyrie::Thread::HardwareManager
 {
   /*-------------------------------------------------------------------------------
+  Constants
+  -------------------------------------------------------------------------------*/
+
+  /*-------------------------------------------------------------------------------
   Public Functions
   -------------------------------------------------------------------------------*/
   void main( void *arg )
   {
     LOG_INFO( "Hardware thread startup\r\n" );
 
-    Valkyrie::Sensor::Accel::initialize();
-    auto sensor = Valkyrie::Sensor::Accel::getInstance( 0 );
+    /*-------------------------------------------------
+    Periodic Timers
+    -------------------------------------------------*/
+    Aurora::Utility::PeriodicTimeout ahrsTimeout( 10, 0 );
 
+    /*-------------------------------------------------
+    Power up various modules
+    -------------------------------------------------*/
+    Valkyrie::Sensor::Accel::initialize();
+    auto accel = Valkyrie::Sensor::Accel::getInstance( 0 );
+
+    /*-------------------------------------------------
+    Run the main processing
+    -------------------------------------------------*/
     while( true )
     {
-      sensor->measure();
-      Chimera::delayMilliseconds( 50 );
+
+      /*-------------------------------------------------
+      Measure the attitude sensors
+      -------------------------------------------------*/
+      if( ahrsTimeout.expired() )
+      {
+        ahrsTimeout.refresh();
+
+        accel->measure();
+        LOG_INFO("Measure\r\n");
+      }
+
+      Chimera::delayMilliseconds( HardwareManager::Period );
     }
   }
 }  // namespace Valkyrie::Thread::Hardware

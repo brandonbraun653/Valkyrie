@@ -39,7 +39,7 @@ namespace Valkyrie::Thread
      * @param arg   Unused
      */
     void main( void *arg );
-  }
+  }    // namespace Background
 
   /*-------------------------------------------------------------------------------
   Hardware Manager: Performs IO access to system hardware
@@ -47,6 +47,7 @@ namespace Valkyrie::Thread
   namespace HardwareManager
   {
     static const std::string_view Name = "HWMgr";
+    static constexpr size_t Period     = 5;
     static constexpr size_t StackDepth = STACK_BYTES( 1024 );
 
     /**
@@ -55,7 +56,7 @@ namespace Valkyrie::Thread
      * @param arg   Unused
      */
     void main( void *arg );
-  }
+  }    // namespace HardwareManager
 
 
   /*-------------------------------------------------------------------------------
@@ -72,8 +73,8 @@ namespace Valkyrie::Thread
      * @param arg   Unused
      */
     void main( void *arg );
-  }
+  }    // namespace SystemMonitor
 
-}  // namespace Valkyrie::Thread
+}    // namespace Valkyrie::Thread
 
-#endif  /* !VALKYRIE_THREAD_LISTING_HPP */
+#endif /* !VALKYRIE_THREAD_LISTING_HPP */
