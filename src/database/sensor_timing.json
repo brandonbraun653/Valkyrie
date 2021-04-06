@@ -1,0 +1,9 @@
+{
+  "version": 0,
+  "sensors": {
+    "accel": 25,
+    "gyro": 25,
+    "mag": 150,
+    "gps": 1000
+  }
+}

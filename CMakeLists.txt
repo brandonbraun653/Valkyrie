@@ -41,6 +41,7 @@ set(NANO_PB_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/lib/nanopb" CACHE STRING "")
 # ====================================================
 find_package(Boost REQUIRED)
 add_subdirectory("lib/Apollo")
+add_subdirectory("lib/ArduinoJSON")
 add_subdirectory("lib/Aurora")
 add_subdirectory("lib/Chimera")
 add_subdirectory("lib/ChimeraSim")
@@ -67,6 +68,7 @@ gen_intf_lib(
     # Give these their own targets later
     "${PROJECT_ROOT}/lib/msgpack/include"
     "${PROJECT_ROOT}/lib/cppzmq"
+    "${PROJECT_ROOT}/lib/ArduinoJSON/src"
   EXPORT_DIR
     "${PROJECT_BINARY_DIR}/Project"
 )

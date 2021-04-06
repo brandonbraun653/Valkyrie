@@ -5,6 +5,8 @@ gen_static_lib_variants(
     lib_valkyrie_kernel_data
   SOURCES
     parameters.cpp
+    registry_data.cpp
+    registry_loader.cpp
   PRV_LIBRARIES
     aurora_intf_inc
     chimera_intf_inc

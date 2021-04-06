@@ -34,6 +34,11 @@ namespace Valkyrie::Registry
     KEY_SIMPLE_START,
     KEY_BOOT_COUNT = KEY_SIMPLE_START,
 
+    KEY_SAMPLE_RATE_ACCEL,
+    KEY_SAMPLE_RATE_GYRO,
+    KEY_SAMPLE_RATE_MAG,
+    KEY_SAMPLE_RATE_GPS,
+
     /*-------------------------------------------------
     Observable Data
     -------------------------------------------------*/
@@ -66,6 +71,20 @@ namespace Valkyrie::Registry
   //   OBSERVABLE_PTR( ButtonDown ),
   //   OBSERVABLE_PTR( ButtonUp ),
   // };
+
+  /*-------------------------------------------------------------------------------
+  Public Functions
+  -------------------------------------------------------------------------------*/
+  /**
+   * @brief Loads an entire registry file into the given buffer
+   *
+   * @param filename    The file being loaded
+   * @param buffer      Where to write the data into
+   * @param size        Size of the output buffer
+   * @return true       Load succeeded
+   * @return false      Load failed
+   */
+  bool loadData( std::string_view &filename, uint8_t *const buffer, const size_t size );
 }  // namespace Valkyrie
 
 #endif  /* !VALKYRIE_REGISTRY_DATA_HPP */

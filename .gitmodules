@@ -37,3 +37,6 @@
 [submodule "lib/cppzmq"]
 	path = lib/cppzmq
 	url = https://github.com/zeromq/cppzmq.git
+[submodule "lib/ArduinoJSON"]
+	path = lib/ArduinoJSON
+	url = https://github.com/bblanchon/ArduinoJson.git

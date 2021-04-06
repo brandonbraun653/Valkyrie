@@ -12,6 +12,10 @@
 #ifndef VALKYRIE_SYSTEM_PARAMETERS_HPP
 #define VALKYRIE_SYSTEM_PARAMETERS_HPP
 
+/* Aurora Includes */
+#include <Aurora/database>
+#include <Aurora/datastore>
+
 /* Project Includes */
 #include <src/kernel/data/registry_data.hpp>
 
@@ -30,7 +34,23 @@ namespace Valkyrie::Registry
      * @return void
      */
     void initRegistry();
-  }
+
+    /**
+     * @brief Loads the system configuration from memory into the registry
+     *
+     * This is expected to read a file from nonvolatile memory, which will
+     * require this to be called after the OS boots.
+     */
+    void loadSystemConfig();
+  }    // namespace Boot
+
+
+  namespace _Internal
+  {
+    extern Aurora::Database::RAM Database;
+    extern Aurora::Datastore::Manager Datastore;
+  }    // namespace _Internal
+
 
   /**
    * @brief Reads from the database in a thread safe way
@@ -56,6 +76,6 @@ namespace Valkyrie::Registry
    */
   bool writeSafe( const DatabaseKeys key, const void *const data, const size_t size );
 
-}  // namespace Valkyrie
+}    // namespace Valkyrie::Registry
 
-#endif  /* !VALKYRIE_SYSTEM_PARAMETERS_HPP */
+#endif /* !VALKYRIE_SYSTEM_PARAMETERS_HPP */

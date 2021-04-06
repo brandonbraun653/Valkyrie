@@ -69,7 +69,9 @@
     "cinttypes": "cpp",
     "typeinfo": "cpp",
     "variant": "cpp",
-    "sensors": "cpp"
+    "sensors": "cpp",
+    "datastore": "cpp",
+    "kernel": "cpp"
   },
   "python.pythonPath": "/home/braunbr/programs/anaconda3/envs/quadcopter/bin/python"
 }

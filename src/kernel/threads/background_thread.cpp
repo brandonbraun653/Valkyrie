@@ -15,10 +15,20 @@
 #include <Chimera/thread>
 
 /* Valkyrie Includes */
+#include <Valkyrie/kernel>
 #include <src/kernel/threads/thread_listing.hpp>
 
 namespace Valkyrie::Thread::Background
 {
+  /*-------------------------------------------------------------------------------
+  Static Declarations
+  -------------------------------------------------------------------------------*/
+  /**
+   * @brief Powers up system resources that require an OS to execute
+   * @note  Should be called before the primary system threads are ready to run
+   */
+  static void bootOSResources();
+
   /*-------------------------------------------------------------------------------
   Public Functions
   -------------------------------------------------------------------------------*/
@@ -27,7 +37,12 @@ namespace Valkyrie::Thread::Background
     LOG_INFO( "Background thread startup\r\n" );
 
     /*-------------------------------------------------
-    Start up the remaining system threads
+    Power up remaining resources
+    -------------------------------------------------*/
+    bootOSResources();
+
+    /*-------------------------------------------------
+    Start up all system threads
     -------------------------------------------------*/
     CreateThreads();
 
@@ -36,5 +51,16 @@ namespace Valkyrie::Thread::Background
       // Kick watchdog here eventually
       Chimera::delayMilliseconds( 100 );
     }
+  }
+
+  /*-------------------------------------------------------------------------------
+  Static Implementation
+  -------------------------------------------------------------------------------*/
+  static void bootOSResources()
+  {
+    /*-------------------------------------------------
+    Load the system config into memory
+    -------------------------------------------------*/
+    Registry::Boot::loadSystemConfig();
   }
 }  // namespace Valkyrie::Thread::Background
