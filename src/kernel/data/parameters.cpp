@@ -91,12 +91,23 @@ namespace Valkyrie::Registry
       Constant data loaded from non-volatile memory
       -------------------------------------------------------------------------------*/
       /*-------------------------------------------------
+      Simulator data port configuration
+      -------------------------------------------------*/
+#if defined( SIMULATOR )
+      SimPortsLoader sim_ports;
+      all_loaded = true;
+      all_loaded &= sim_ports.registerParameters();
+      all_loaded &= sim_ports.populateFromFile();
+      LOG_IF_ERROR( all_loaded, "Failed to load Simulator Port config\r\n" );
+#endif /* SIMULATOR */
+
+      /*-------------------------------------------------
       Sensor measurement timing
       -------------------------------------------------*/
       SensorTimingLoader sensor_timing;
       all_loaded = true;
-      all_loaded |= sensor_timing.registerParameters();
-      all_loaded |= sensor_timing.populateFromFile();
+      all_loaded &= sensor_timing.registerParameters();
+      all_loaded &= sensor_timing.populateFromFile();
       LOG_IF_ERROR( all_loaded, "Failed to load Sensor Timing config\r\n" );
 
       /*-------------------------------------------------------------------------------

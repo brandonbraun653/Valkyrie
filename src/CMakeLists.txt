@@ -23,6 +23,8 @@ target_link_libraries(Valkyrie PRIVATE
   lib_valkyrie_debug
   lib_valkyrie_kernel
   lib_valkyrie_sensor_accelerometer
+  lib_valkyrie_sensor_gyroscope
+  lib_valkyrie_sensor_magnetometer
   lib_valkyrie_sensor_virtual
 
   # Apollo

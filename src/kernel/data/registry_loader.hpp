@@ -46,6 +46,16 @@ namespace Valkyrie::Registry
   };
 
 
+#if defined( SIMULATOR )
+  class SimPortsLoader : public ILoader
+  {
+  public:
+    bool registerParameters() final override;
+    bool populateFromFile() final override;
+  };
+#endif /* SIMULATOR */
+
+
   class SensorTimingLoader : public ILoader
   {
   public:

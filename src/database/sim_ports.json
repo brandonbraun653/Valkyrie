@@ -1,0 +1,9 @@
+{
+  "base_port": 50000,
+  "sensors": {
+    "accel": 23,
+    "gyro": 24,
+    "mag": 25,
+    "gps": 26
+  }
+}

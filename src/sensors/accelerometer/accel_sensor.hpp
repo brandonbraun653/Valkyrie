@@ -33,9 +33,9 @@ namespace Valkyrie::Sensor::Accel
   /**
    * @brief Get the Sensor object
    *
-   * @return Aurora::Sensor::IBase
+   * @return Aurora::Sensor::ISensor_sPtr
    */
-  std::shared_ptr<Aurora::Sensor::IBase> getInstance( const size_t instance );
+  Aurora::Sensor::ISensor_sPtr getInstance( const size_t instance );
 
   /*-------------------------------------------------------------------------------
   Classes

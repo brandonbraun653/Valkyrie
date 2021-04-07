@@ -12,7 +12,10 @@
 #ifndef VALKYRIE_SENSORS_INCLUDES
 #define VALKYRIE_SENSORS_INCLUDES
 
-#include <src/sensors/accel_sensor.hpp>
+#include <src/sensors/accelerometer/accel_sensor.hpp>
+#include <src/sensors/gyroscope/gyro_sensor.hpp>
+#include <src/sensors/magnetometer/mag_sensor.hpp>
+#include <src/sensors/sensor_intf.hpp>
 #include <src/sensors/virtual_sensor.hpp>
 
 #endif /* !VALKYRIE_SENSORS_INCLUDES */

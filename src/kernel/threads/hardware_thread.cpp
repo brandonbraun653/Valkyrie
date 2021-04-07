@@ -16,6 +16,7 @@
 #include <Chimera/thread>
 
 /* Valkyrie Includes */
+#include <Valkyrie/kernel>
 #include <Valkyrie/sensors>
 #include <src/kernel/threads/thread_listing.hpp>
 
@@ -33,15 +34,9 @@ namespace Valkyrie::Thread::HardwareManager
     LOG_INFO( "Hardware thread startup\r\n" );
 
     /*-------------------------------------------------
-    Periodic Timers
-    -------------------------------------------------*/
-    Aurora::Utility::PeriodicTimeout ahrsTimeout( 10, 0 );
-
-    /*-------------------------------------------------
     Power up various modules
     -------------------------------------------------*/
-    Valkyrie::Sensor::Accel::initialize();
-    auto accel = Valkyrie::Sensor::Accel::getInstance( 0 );
+    Sensor::initIMU();
 
     /*-------------------------------------------------
     Run the main processing
@@ -51,13 +46,7 @@ namespace Valkyrie::Thread::HardwareManager
       /*-------------------------------------------------
       Measure the attitude sensors
       -------------------------------------------------*/
-      if( ahrsTimeout.expired() )
-      {
-        ahrsTimeout.refresh();
-
-        accel->measure();
-        LOG_INFO("Measure\r\n");
-      }
+      Sensor::processIMU();
 
       Chimera::delayMilliseconds( HardwareManager::Period );
     }

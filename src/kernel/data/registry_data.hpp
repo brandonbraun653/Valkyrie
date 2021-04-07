@@ -34,10 +34,29 @@ namespace Valkyrie::Registry
     KEY_SIMPLE_START,
     KEY_BOOT_COUNT = KEY_SIMPLE_START,
 
+    /*-------------------------------------------------
+    Simulator Port Configuration
+    -------------------------------------------------*/
+#if defined( SIMULATOR )
+    KEY_SIM_PORT_DATA_ACCEL,
+    KEY_SIM_PORT_DATA_GYRO,
+    KEY_SIM_PORT_DATA_MAG,
+#endif  /* SIMULATOR */
+
+    /*-------------------------------------------------
+    Sensor Sample Rates
+    -------------------------------------------------*/
     KEY_SAMPLE_RATE_ACCEL,
     KEY_SAMPLE_RATE_GYRO,
     KEY_SAMPLE_RATE_MAG,
     KEY_SAMPLE_RATE_GPS,
+
+    /*-------------------------------------------------
+    Sensor Measurement Data
+    -------------------------------------------------*/
+    KEY_SENSOR_DATA_ACCEL,
+    KEY_SENSOR_DATA_GYRO,
+    KEY_SENSOR_DATA_MAG,
 
     /*-------------------------------------------------
     Observable Data
