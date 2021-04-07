@@ -40,3 +40,6 @@
 [submodule "lib/ArduinoJSON"]
 	path = lib/ArduinoJSON
 	url = https://github.com/bblanchon/ArduinoJson.git
+[submodule "lib/ukf"]
+	path = lib/ukf
+	url = https://github.com/sfwa/ukf.git

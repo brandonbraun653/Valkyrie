@@ -69,6 +69,7 @@ gen_intf_lib(
     "${PROJECT_ROOT}/lib/msgpack/include"
     "${PROJECT_ROOT}/lib/cppzmq"
     "${PROJECT_ROOT}/lib/ArduinoJSON/src"
+    "${PROJECT_ROOT}/lib/ukf/include"
   EXPORT_DIR
     "${PROJECT_BINARY_DIR}/Project"
 )
