@@ -1,9 +1,10 @@
 .VSCodeCounter
-build/**
-artifacts/
+.ipynb_checkpoints
+build
+artifacts
 
 # Binaries for the simulator that are generated in the root directory
 *.bin
 
 # PyCharm project directory
-.idea/**
+.idea
