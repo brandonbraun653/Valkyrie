@@ -1,9 +1,9 @@
 {
-  "base_port": 50000,
-  "sensors": {
-    "accel": 23,
-    "gyro": 24,
-    "mag": 25,
-    "gps": 26
+  "bind_ip": "127.0.0.1",
+  "transport": "tcp",
+  "port": {
+    "sensor": 50100,
+    "system_control": 50200,
+    "user_input": 50205
   }
 }
