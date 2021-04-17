@@ -1,0 +1,19 @@
+/********************************************************************************
+ *  File Name:
+ *    sim
+ *
+ *  Description:
+ *    Valkyrie includes for the simulator module headers
+ *
+ *  2021 | Brandon Braun | brandonbraun653@gmail.com
+ ********************************************************************************/
+
+#pragma once
+#ifndef VALKYRIE_SIM_INCLUDES
+#define VALKYRIE_SIM_INCLUDES
+
+#if defined( SIMULATOR )
+#include <src/sim/sim_transport.hpp>
+#endif  /* SIMULATOR */
+
+#endif /* !VALKYRIE_SIM_INCLUDES */

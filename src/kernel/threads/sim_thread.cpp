@@ -1,52 +1,48 @@
 /********************************************************************************
  *  File Name:
- *    virtual_sensor.cpp
+ *    sim_thread.cpp
  *
  *  Description:
- *    Implement high level virtual sensor resources
+ *    Implements the Valkyrie thread that runs the simulator's message pump for
+ *    communication with the Virtual Drone.
  *
  *  2021 | Brandon Braun | brandonbraun653@gmail.com
  *******************************************************************************/
 
-/* STL Includes */
-#include <cstdio>
-#include <cstring>
-
 /* Aurora Includes */
 #include <Aurora/logging>
+#include <Aurora/utility>
+
+/* Chimera Includes */
+#include <Chimera/thread>
 
 /* Valkyrie Includes */
+#include <Valkyrie/kernel>
 #include <Valkyrie/sensors>
+#include <Valkyrie/sim>
+#include <src/kernel/threads/thread_listing.hpp>
 
-#if defined( SIMULATOR )
-
-namespace Valkyrie::Sensor::Virtual
+namespace Valkyrie::Thread::Sim
 {
   /*-------------------------------------------------------------------------------
-  Public Data
+  Constants
   -------------------------------------------------------------------------------*/
-  zmq::context_t ZMQContext;
 
   /*-------------------------------------------------------------------------------
   Public Functions
   -------------------------------------------------------------------------------*/
-  void initTransport( const size_t threads )
+  void main( void *arg )
   {
-    LOG_TRACE( "Powering up ZMQ sensor transport\r\n" );
-    ZMQContext = zmq::context_t( threads );
+    LOG_INFO( "Simulator thread startup\r\n" );
+
+
+    /*-------------------------------------------------
+    Run the main processing
+    -------------------------------------------------*/
+    while( true )
+    {
+
+      Chimera::delayMilliseconds( Sim::Period );
+    }
   }
-
-
-  std::string buildAddress( const size_t tcp_port )
-  {
-    char fmtBuffer[ 100 ];
-    memset( fmtBuffer, 0, sizeof( fmtBuffer ) );
-
-    snprintf( fmtBuffer, sizeof( fmtBuffer ), "tcp://127.0.0.1:%ld", tcp_port );
-
-    return std::string( fmtBuffer );
-  }
-
-}  // namespace Valkyrie::Sensor::Virtual
-
-#endif  /* SIMULATOR */
+}  // namespace Valkyrie::Thread::Hardware

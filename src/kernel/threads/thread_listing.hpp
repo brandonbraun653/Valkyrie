@@ -75,6 +75,25 @@ namespace Valkyrie::Thread
     void main( void *arg );
   }    // namespace SystemMonitor
 
+#if defined( SIMULATOR )
+  /*-------------------------------------------------------------------------------
+  Simulator Thread: Pumps RX/TX data through the simulator ports
+  -------------------------------------------------------------------------------*/
+  namespace Sim
+  {
+    static const std::string_view Name = "SimPump";
+    static constexpr size_t Period     = 5;
+    static constexpr size_t StackDepth = STACK_BYTES( 10 * 1024 );
+
+    /**
+     * @brief Entry for the background thread
+     *
+     * @param arg   Unused
+     */
+    void main( void *arg );
+  }    // namespace Sim
+#endif /* SIMULATOR */
+
 }    // namespace Valkyrie::Thread
 
 #endif /* !VALKYRIE_THREAD_LISTING_HPP */

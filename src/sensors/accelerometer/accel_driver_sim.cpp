@@ -18,6 +18,7 @@
 /* Project Includes */
 #include <Valkyrie/autogen>
 #include <Valkyrie/sensors>
+#include <Valkyrie/sim>
 
 #if defined( SIMULATOR )
 

@@ -4,6 +4,8 @@
   "port": {
     "sensor": 50100,
     "system_control": 50200,
-    "user_input": 50205
+    "user_input": 50205,
+    "tx_sim": 50210,
+    "rx_sim": 50211
   }
 }

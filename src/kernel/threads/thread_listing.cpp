@@ -52,5 +52,22 @@ namespace Valkyrie::Thread
     sys.create( cfg );
     sys.start();
 
+    /*-------------------------------------------------
+    Simulator Thread
+    -------------------------------------------------*/
+#if defined( SIMULATOR )
+    cfg.function.callable.pointer = Sim::main;
+    cfg.function.type             = FunctorType::C_STYLE;
+    cfg.name                      = Sim::Name.data();
+    cfg.priority                  = Priority::LEVEL_5;
+    cfg.stackWords                = Sim::StackDepth;
+    cfg.arg                       = nullptr;
+    cfg.type                      = TaskInitType::DYNAMIC;
+
+    Task sim;
+    sim.create( cfg );
+    sim.start();
+#endif  /* SIMULATOR */
+
   }
 }  // namespace Valkyrie::Thread

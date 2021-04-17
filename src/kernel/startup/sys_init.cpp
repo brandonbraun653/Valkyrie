@@ -19,6 +19,7 @@
 #include <Valkyrie/debug>
 #include <Valkyrie/kernel>
 #include <Valkyrie/sensors>
+#include <Valkyrie/sim>
 #include <src/kernel/threads/thread_listing.hpp>
 
 namespace Valkyrie::Boot
@@ -43,7 +44,7 @@ namespace Valkyrie::Boot
     layer between the sim and this project.
     -------------------------------------------------*/
 #if defined( SIMULATOR )
-    Sensor::Virtual::initTransport( 8 );
+    Sim::Transport::initTransport( 8 );
 #endif /* SIMULATOR */
   }
 

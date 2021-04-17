@@ -15,6 +15,7 @@
 
 /* Project Includes */
 #include <Valkyrie/kernel>
+#include <Valkyrie/sim>
 
 
 namespace Valkyrie::Registry
@@ -91,7 +92,7 @@ namespace Valkyrie::Registry
       Constant data loaded from non-volatile memory
       -------------------------------------------------------------------------------*/
       /*-------------------------------------------------
-      Simulator data port configuration
+      Simulator configuration
       -------------------------------------------------*/
 #if defined( SIMULATOR )
       SimPortsLoader sim_ports;
@@ -99,6 +100,8 @@ namespace Valkyrie::Registry
       all_loaded &= sim_ports.registerParameters();
       all_loaded &= sim_ports.populateFromFile();
       LOG_IF_ERROR( all_loaded, "Failed to load Simulator Port config\r\n" );
+
+      Sim::Transport::registerTopics();
 #endif /* SIMULATOR */
 
       /*-------------------------------------------------

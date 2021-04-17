@@ -16,6 +16,5 @@
 #include <src/sensors/gyroscope/gyro_sensor.hpp>
 #include <src/sensors/magnetometer/mag_sensor.hpp>
 #include <src/sensors/sensor_intf.hpp>
-#include <src/sensors/virtual_sensor.hpp>
 
 #endif /* !VALKYRIE_SENSORS_INCLUDES */

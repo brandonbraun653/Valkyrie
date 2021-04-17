@@ -7,6 +7,7 @@ gen_static_lib_variants(
     background_thread.cpp
     hardware_thread.cpp
     monitor_thread.cpp
+    sim_thread.cpp
     thread_listing.cpp
   PRV_LIBRARIES
     aurora_intf_inc

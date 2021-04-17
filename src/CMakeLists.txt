@@ -4,6 +4,7 @@ include("${COMMON_TOOL_ROOT}/cmake/utility/embedded.cmake")
 add_subdirectory(dbg)
 add_subdirectory(kernel)
 add_subdirectory(sensors)
+add_subdirectory(sim)
 
 
 # Collect all the source modules together
@@ -25,7 +26,8 @@ target_link_libraries(Valkyrie PRIVATE
   lib_valkyrie_sensor_accelerometer
   lib_valkyrie_sensor_gyroscope
   lib_valkyrie_sensor_magnetometer
-  lib_valkyrie_sensor_virtual
+  lib_valkyrie_sensor
+  lib_valkyrie_sim
 
   # Apollo
   apollo_freertos_hooks

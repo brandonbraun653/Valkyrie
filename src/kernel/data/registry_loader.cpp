@@ -31,9 +31,15 @@ Sim Port Configuration
   bool SimPortsLoader::registerParameters()
   {
     Chimera::Status_t result = Chimera::Status::OK;
-    result |= _Internal::Database.insert( KEY_SIM_PORT_DATA_ACCEL, sizeof( size_t ) );
-    result |= _Internal::Database.insert( KEY_SIM_PORT_DATA_GYRO, sizeof( size_t ) );
-    result |= _Internal::Database.insert( KEY_SIM_PORT_DATA_MAG, sizeof( size_t ) );
+
+    /*-------------------------------------------------
+    Initialize port configuration
+    -------------------------------------------------*/
+    result |= _Internal::Database.insert( KEY_SIM_PORT_SENSOR, sizeof( size_t ) );
+    result |= _Internal::Database.insert( KEY_SIM_PORT_SYS_CTRL, sizeof( size_t ) );
+    result |= _Internal::Database.insert( KEY_SIM_PORT_USR_INPUT, sizeof( size_t ) );
+    result |= _Internal::Database.insert( KEY_SIM_PORT_TX_SIM, sizeof( size_t ) );
+    result |= _Internal::Database.insert( KEY_SIM_PORT_RX_SIM, sizeof( size_t ) );
 
     return result == Chimera::Status::OK;
   }
@@ -64,18 +70,20 @@ Sim Port Configuration
     -------------------------------------------------*/
     bool keys_updated = true;
 
-    size_t base_port  = doc[ "base_port" ];
-    size_t accel_offset = doc[ "sensors" ][ "accel" ];
-    size_t gyro_offset  = doc[ "sensors" ][ "gyro" ];
-    size_t mag_offset   = doc[ "sensors" ][ "mag" ];
+    /*-------------------------------------------------
+    Store the Port Data
+    -------------------------------------------------*/
+    size_t sensor_port     = doc[ "port" ][ "sensor" ];
+    size_t sys_ctrl_port   = doc[ "port" ][ "system_control" ];
+    size_t user_input_port = doc[ "port" ][ "user_input" ];
+    size_t tx_sim_port     = doc[ "port" ][ "tx_sim" ];
+    size_t rx_sim_port     = doc[ "port" ][ "rx_sim" ];
 
-    size_t accel_port = base_port + accel_offset;
-    size_t gyro_port  = base_port + gyro_offset;
-    size_t mag_port   = base_port + mag_offset;
-
-    keys_updated |= Registry::writeSafe( DatabaseKeys::KEY_SIM_PORT_DATA_ACCEL, &accel_port, sizeof( accel_port ) );
-    keys_updated |= Registry::writeSafe( DatabaseKeys::KEY_SIM_PORT_DATA_GYRO, &gyro_port, sizeof( gyro_port ) );
-    keys_updated |= Registry::writeSafe( DatabaseKeys::KEY_SIM_PORT_DATA_MAG, &mag_port, sizeof( mag_port ) );
+    keys_updated &= Registry::writeSafe( DatabaseKeys::KEY_SIM_PORT_SENSOR, &sensor_port, sizeof( sensor_port ) );
+    keys_updated &= Registry::writeSafe( DatabaseKeys::KEY_SIM_PORT_SYS_CTRL, &sys_ctrl_port, sizeof( sys_ctrl_port ) );
+    keys_updated &= Registry::writeSafe( DatabaseKeys::KEY_SIM_PORT_USR_INPUT, &user_input_port, sizeof( user_input_port ) );
+    keys_updated &= Registry::writeSafe( DatabaseKeys::KEY_SIM_PORT_TX_SIM, &tx_sim_port, sizeof( tx_sim_port ) );
+    keys_updated &= Registry::writeSafe( DatabaseKeys::KEY_SIM_PORT_RX_SIM, &rx_sim_port, sizeof( rx_sim_port ) );
 
     return keys_updated;
   }

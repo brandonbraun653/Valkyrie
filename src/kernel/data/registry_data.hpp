@@ -28,20 +28,42 @@ namespace Valkyrie::Registry
   -------------------------------------------------------------------------------*/
   enum DatabaseKeys : Aurora::Database::Key
   {
+    /*-------------------------------------------------------------------------------
+    Simulator Data
+    -------------------------------------------------------------------------------*/
     /*-------------------------------------------------
-    Simple Stored Data
-    -------------------------------------------------*/
-    KEY_SIMPLE_START,
-    KEY_BOOT_COUNT = KEY_SIMPLE_START,
-
-    /*-------------------------------------------------
-    Simulator Port Configuration
+    Port Configuration
     -------------------------------------------------*/
 #if defined( SIMULATOR )
-    KEY_SIM_PORT_DATA_ACCEL,
-    KEY_SIM_PORT_DATA_GYRO,
-    KEY_SIM_PORT_DATA_MAG,
+    KEY_SIM_PORT_START,
+    KEY_SIM_PORT_SENSOR = KEY_SIM_PORT_START,    /**< Simulated sensor data from drone physics */
+    KEY_SIM_PORT_SYS_CTRL,  /**< Control inputs from flight software to sim */
+    KEY_SIM_PORT_USR_INPUT, /**< Various user input data to the sim */
+    KEY_SIM_PORT_TX_SIM,    /**< Port the simulator transmits on to the flight software */
+    KEY_SIM_PORT_RX_SIM,    /**< Port the simulator listens on for incoming data */
+    KEY_SIM_PORT_END,
 #endif  /* SIMULATOR */
+
+    /*-------------------------------------------------
+    Topic Configuration
+    -------------------------------------------------*/
+#if defined( SIMULATOR )
+    KEY_SIM_TOPIC_START,
+    KEY_SIM_PORT_SENSOR_TOPIC_ACCEL = KEY_SIM_TOPIC_START,
+    KEY_SIM_PORT_SENSOR_TOPIC_GYRO,
+    KEY_SIM_PORT_SENSOR_TOPIC_MAG,
+    KEY_SIM_PORT_SYS_CTRL_TOPIC_MOTOR,
+    KEY_SIM_PORT_USR_INPUT_TOPIC_SET_POINT,
+    KEY_SIM_PORT_TX_SIM_TOPIC_HEARTBEAT,
+    KEY_SIM_PORT_RX_SIM_TOPIC_HEARTBEAT,
+    KEY_SIM_TOPIC_END,
+#endif  /* SIMULATOR */
+
+    /*-------------------------------------------------------------------------------
+    Simple Data
+    -------------------------------------------------------------------------------*/
+    KEY_SIMPLE_START,
+    KEY_BOOT_COUNT = KEY_SIMPLE_START,
 
     /*-------------------------------------------------
     Sensor Sample Rates
@@ -58,9 +80,9 @@ namespace Valkyrie::Registry
     KEY_SENSOR_DATA_GYRO,
     KEY_SENSOR_DATA_MAG,
 
-    /*-------------------------------------------------
+    /*-------------------------------------------------------------------------------
     Observable Data
-    -------------------------------------------------*/
+    -------------------------------------------------------------------------------*/
     KEY_OBSERVABLE_START,
     KEY_BUTTON_UP = KEY_OBSERVABLE_START,
     KEY_BUTTON_DOWN,
@@ -76,6 +98,11 @@ namespace Valkyrie::Registry
     -------------------------------------------------*/
     KEY_OBSERVABLE_END  = NUM_DATABASE_KEYS,
     KEY_SIMPLE_END = KEY_OBSERVABLE_START,
+
+    /*-------------------------------------------------
+    Configuration
+    -------------------------------------------------*/
+    sim_TOPIC_STR_SIZE = 32,
   };
 
   /*-------------------------------------------------------------------------------
