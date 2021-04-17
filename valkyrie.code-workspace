@@ -5,6 +5,10 @@
     }
   ],
   "settings": {
+    "files.associations": {
+      "*.JLinkScript": "plaintext",
+      "utility": "cpp"
+    }
 
   }
 }

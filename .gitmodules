@@ -43,3 +43,6 @@
 [submodule "lib/ukf"]
 	path = lib/ukf
 	url = https://github.com/sfwa/ukf.git
+[submodule "lib/PyUtils"]
+	path = lib/PyUtils
+	url = https://github.com/brandonbraun653/PyUtils.git
