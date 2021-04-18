@@ -13,6 +13,9 @@
 #include <Aurora/datastore>
 #include <Aurora/logging>
 
+/* Chimera Includes */
+#include <Chimera/utility>
+
 /* Project Includes */
 #include <Valkyrie/kernel>
 #include <Valkyrie/sim>
@@ -127,9 +130,13 @@ namespace Valkyrie::Registry
      */
     static void registerObservables()
     {
+      /*-------------------------------------------------
+      Grab the pointer to each statically declared obser-
+      vable parameter and register it with the datastore.
+      -------------------------------------------------*/
       for ( size_t x = 0; x < ARRAY_COUNT( ObservableList ); x++ )
       {
-        bool error = _Internal::Datastore.registerObservable( *ObservableList[ x ] );
+        bool error = _Internal::Datastore.registerObservable( ObservableList[ x ], &_Internal::Database );
         LOG_IF_ERROR( error, "Failed to register observable %d\r\n", x );
       }
     }

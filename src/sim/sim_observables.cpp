@@ -28,20 +28,30 @@ namespace Valkyrie::Registry
 
   void Observable_SimConnected::update()
   {
+    bool connected = true;
+
     /*-------------------------------------------------
     The message is received if it exists in the queue
     -------------------------------------------------*/
     zmq::message_t message = {};
     if ( !Valkyrie::Sim::Transport::receive( Registry::KEY_SIM_PORT_TX_SIM_TOPIC_HEARTBEAT, message ) )
     {
-      /* No valid data yet */
+      bool expired =  this->isExpired();
+      bool valid = this->valid();
+
+      if( expired && valid )
+      {
+        connected = false;
+        getDatabase()->write( this->key(), &connected );
+        this->mLastUpdate = Chimera::millis();
+      }
       return;
     }
 
     /*-------------------------------------------------
     No need to deserialize the data
     -------------------------------------------------*/
-    bool connected = true;
+    this->mLastUpdate = Chimera::millis();
     getDatabase()->write( this->key(), &connected );
     notify_observers( &connected );
   }

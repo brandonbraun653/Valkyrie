@@ -28,7 +28,7 @@ namespace Valkyrie::Thread::Sim
   /*-------------------------------------------------------------------------------
   Constants
   -------------------------------------------------------------------------------*/
-  static constexpr size_t HEARTBEAT_PERIOD_MS = 100;
+  static constexpr size_t HEARTBEAT_PERIOD_MS = 1000;
 
 
   /*-------------------------------------------------------------------------------
@@ -182,6 +182,7 @@ namespace Valkyrie::Thread::Sim
       else
       {
         tp.queue->push( std::move( message ) );
+        LOG_TRACE( "Received message on topic %s\n", topic_str.data() );
       }
     }
   }

@@ -71,7 +71,11 @@
       "cinttypes": "cpp",
       "typeindex": "cpp",
       "typeinfo": "cpp",
-      "variant": "cpp"
+      "variant": "cpp",
+      "*.def": "cpp",
+      "alignedvector3": "cpp",
+      "nonlinearoptimization": "cpp",
+      "*.ipp": "cpp"
     }
 
   }

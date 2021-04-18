@@ -48,7 +48,7 @@ namespace Valkyrie::Thread
   {
     static const std::string_view Name = "HWMgr";
     static constexpr size_t Period     = 5;
-    static constexpr size_t StackDepth = STACK_BYTES( 1024 );
+    static constexpr size_t StackDepth = STACK_BYTES( 2048 );
 
     /**
      * @brief Entry for the background thread

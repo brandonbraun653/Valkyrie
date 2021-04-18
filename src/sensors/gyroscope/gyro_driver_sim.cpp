@@ -95,19 +95,10 @@ namespace Valkyrie::Sensor::Gyro
     /*-------------------------------------------------
     Grab data from the queue
     -------------------------------------------------*/
-    TopicResource &tp = ZMQTopics.at( static_cast<size_t>( Registry::KEY_SIM_PORT_SENSOR_TOPIC_GYRO ) );
+    if( !Sim::Transport::receive( Registry::KEY_SIM_PORT_SENSOR_TOPIC_GYRO, message ) )
     {
-      Chimera::Thread::LockGuard( *tp.mtx );
-      if( !tp.transmitType && !tp.queue->empty() )
-      {
-        message.copy( tp.queue->front() );
-        tp.queue->pop();
-      }
-      else
-      {
-        /* No valid data yet */
-        return;
-      }
+      /* No valid data yet */
+      return;
     }
 
     /*-------------------------------------------------

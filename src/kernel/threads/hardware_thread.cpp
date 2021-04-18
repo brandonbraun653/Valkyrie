@@ -44,6 +44,11 @@ namespace Valkyrie::Thread::HardwareManager
     while( true )
     {
       /*-------------------------------------------------
+      Update the system observable data
+      -------------------------------------------------*/
+      Registry::_Internal::Datastore.process();
+
+      /*-------------------------------------------------
       Measure the attitude sensors
       -------------------------------------------------*/
       Sensor::processIMU();
