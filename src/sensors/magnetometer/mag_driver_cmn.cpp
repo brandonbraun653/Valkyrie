@@ -41,14 +41,12 @@ namespace Valkyrie::Sensor::Mag
     Configure the target specific sensor implemenation
     -------------------------------------------------*/
 #if defined( SIMULATOR )
-    std::string_view topic = "mag";
-    size_t tcp_port = -1;
-
-    Registry::readSafe( Registry::KEY_SIM_PORT_DATA_MAG, &tcp_port, sizeof( tcp_port ) );
-    LOG_DEBUG( "Magnetometer listening on port %ld\r\n", tcp_port );
+    Registry::TopicString topic;
+    topic.fill( 0 );
+    Registry::readSafe( Registry::KEY_SIM_PORT_SENSOR_TOPIC_MAG, topic.data(), topic.size() );
 
     auto sensor = new Valkyrie::Sensor::Mag::Simulated();
-    sensor->configureZMQ( tcp_port, topic );
+    sensor->configureZMQ( std::string_view( topic.data() ) );
 #else
 #error "No hardware sensor init"
 #endif

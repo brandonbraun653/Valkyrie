@@ -12,6 +12,9 @@
 #ifndef VALKYRIE_REGISTRY_DATA_HPP
 #define VALKYRIE_REGISTRY_DATA_HPP
 
+/* STL Includes */
+#include <array>
+
 /* Aurora Includes */
 #include <Aurora/database>
 #include <Aurora/datastore>
@@ -28,6 +31,13 @@ namespace Valkyrie::Registry
   -------------------------------------------------------------------------------*/
   enum DatabaseKeys : Aurora::Database::Key
   {
+    /*-------------------------------------------------------------------------------
+    Simple Data
+    All data stored in the parameter database must fall after this enum
+    -------------------------------------------------------------------------------*/
+    KEY_SIMPLE_START,
+    KEY_BOOT_COUNT = KEY_SIMPLE_START,
+
     /*-------------------------------------------------------------------------------
     Simulator Data
     -------------------------------------------------------------------------------*/
@@ -59,11 +69,6 @@ namespace Valkyrie::Registry
     KEY_SIM_TOPIC_END,
 #endif  /* SIMULATOR */
 
-    /*-------------------------------------------------------------------------------
-    Simple Data
-    -------------------------------------------------------------------------------*/
-    KEY_SIMPLE_START,
-    KEY_BOOT_COUNT = KEY_SIMPLE_START,
 
     /*-------------------------------------------------
     Sensor Sample Rates
@@ -104,6 +109,11 @@ namespace Valkyrie::Registry
     -------------------------------------------------*/
     sim_TOPIC_STR_SIZE = 32,
   };
+
+  /*-------------------------------------------------------------------------------
+  Types
+  -------------------------------------------------------------------------------*/
+  using TopicString = std::array<char, Registry::sim_TOPIC_STR_SIZE>;
 
   /*-------------------------------------------------------------------------------
   Observable Data Class Declarations

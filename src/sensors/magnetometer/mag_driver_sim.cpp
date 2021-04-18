@@ -36,12 +36,8 @@ namespace Valkyrie::Sensor::Mag
   }
 
 
-  void Simulated::configureZMQ( const size_t tcp_port, const std::string_view &topic )
+  void Simulated::configureZMQ( const std::string_view &topic )
   {
-    mRXSocket = std::make_unique<zmq::socket_t>( Virtual::ZMQContext, ZMQ_SUB );
-    mRXSocket->connect( Virtual::buildAddress( tcp_port ) );
-    mRXSocket->setsockopt( ZMQ_SUBSCRIBE, topic.data(), topic.length() );
-
     mTopic = topic;
   }
 
@@ -97,7 +93,7 @@ namespace Valkyrie::Sensor::Mag
     /*-------------------------------------------------
     Grab the topic and verify it matches expectactions
     -------------------------------------------------*/
-    zmq::recv_result_t result = mRXSocket->recv( message, zmq::recv_flags::dontwait );
+    zmq::recv_result_t result = 0; //mRXSocket->recv( message, zmq::recv_flags::dontwait );
     if ( result <= 0 )
     {
       /* No data to be had yet */

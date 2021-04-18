@@ -38,14 +38,6 @@ namespace Valkyrie::Boot
     Power up the database/registry system
     -------------------------------------------------*/
     Registry::Boot::initRegistry();
-
-    /*-------------------------------------------------
-    If running on a simulator, power up communication
-    layer between the sim and this project.
-    -------------------------------------------------*/
-#if defined( SIMULATOR )
-    Sim::Transport::initTransport( 8 );
-#endif /* SIMULATOR */
   }
 
 

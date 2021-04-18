@@ -100,8 +100,6 @@ namespace Valkyrie::Registry
       all_loaded &= sim_ports.registerParameters();
       all_loaded &= sim_ports.populateFromFile();
       LOG_IF_ERROR( all_loaded, "Failed to load Simulator Port config\r\n" );
-
-      Sim::Transport::registerTopics();
 #endif /* SIMULATOR */
 
       /*-------------------------------------------------

@@ -16,6 +16,7 @@
 
 /* Valkyrie Includes */
 #include <Valkyrie/kernel>
+#include <Valkyrie/sim>
 #include <src/kernel/threads/thread_listing.hpp>
 
 namespace Valkyrie::Thread::Background
@@ -37,9 +38,17 @@ namespace Valkyrie::Thread::Background
     LOG_INFO( "Background thread startup\r\n" );
 
     /*-------------------------------------------------
-    Power up remaining resources
+    Power up remaining resources that depend on an OS
     -------------------------------------------------*/
     bootOSResources();
+
+    /*-------------------------------------------------
+    If running on a simulator, power up communication
+    layer between the sim and this project.
+    -------------------------------------------------*/
+#if defined( SIMULATOR )
+    Valkyrie::Sim::Transport::initTransport( 8 );
+#endif /* SIMULATOR */
 
     /*-------------------------------------------------
     Start up all system threads

@@ -78,7 +78,7 @@ namespace Valkyrie::Sensor::Accel
      * @param tcp_port  Which port to listen for information on
      * @param topic     Topic the data is published on
      */
-    void configureZMQ( const size_t tcp_port, const std::string_view &topic );
+    void configureZMQ( const std::string_view &topic );
 
     /*-------------------------------------------------
     Base Interface

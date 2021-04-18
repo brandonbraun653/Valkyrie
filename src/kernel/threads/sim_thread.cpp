@@ -25,8 +25,10 @@
 namespace Valkyrie::Thread::Sim
 {
   /*-------------------------------------------------------------------------------
-  Constants
+  Static Functions
   -------------------------------------------------------------------------------*/
+  static void rx_message_pump();
+  static void tx_message_pump();
 
   /*-------------------------------------------------------------------------------
   Public Functions
@@ -35,14 +37,45 @@ namespace Valkyrie::Thread::Sim
   {
     LOG_INFO( "Simulator thread startup\r\n" );
 
-
     /*-------------------------------------------------
     Run the main processing
     -------------------------------------------------*/
     while( true )
     {
-
+      rx_message_pump();
+      tx_message_pump();
       Chimera::delayMilliseconds( Sim::Period );
     }
   }
+
+  /*-------------------------------------------------------------------------------
+  Static Functions
+  -------------------------------------------------------------------------------*/
+  static void rx_message_pump()
+  {
+    using namespace Chimera::Thread;
+    using namespace Valkyrie::Sim::Transport;
+
+    for ( size_t topic = Registry::KEY_SIM_TOPIC_START; topic < Registry::KEY_SIM_TOPIC_END; topic++ )
+    {
+      //LockGuard( queueLock.at( static_cast<Registry::DatabaseKeys>( topic ) ) );
+
+
+    }
+  }
+
+
+  static void tx_message_pump()
+  {
+    using namespace Chimera::Thread;
+    using namespace Valkyrie::Sim::Transport;
+
+    for ( size_t topic = Registry::KEY_SIM_TOPIC_START; topic < Registry::KEY_SIM_TOPIC_END; topic++ )
+    {
+      //LockGuard( queueLock.at( static_cast<Registry::DatabaseKeys>( topic ) ) );
+
+
+    }
+  }
+
 }  // namespace Valkyrie::Thread::Hardware

@@ -17,6 +17,7 @@
 /* STL Includes */
 #include <cstddef>
 #include <string>
+#include <queue>
 
 /* Valkyrie Includes */
 #include <Valkyrie/kernel>
@@ -24,20 +25,50 @@
 /* ZMQ Includes */
 #include <zmq.hpp>
 
+/* ETL Includes */
+#include <etl/queue.h>
+#include <etl/map.h>
+
 namespace Valkyrie::Sim::Transport
 {
   /*-------------------------------------------------------------------------------
+  Forward Declarations
+  -------------------------------------------------------------------------------*/
+  struct TopicResource;
+
+  /*-------------------------------------------------------------------------------
   Constants
   -------------------------------------------------------------------------------*/
-  static constexpr size_t MAX_TOPIC_LEN = 32;
+  static constexpr size_t MAX_TOPIC_LEN  = 32;
+  static constexpr size_t MAX_QUEUE_ELEM = 100;
+  static constexpr size_t NUM_SOCKETS    = Registry::KEY_SIM_PORT_END - Registry::KEY_SIM_PORT_START;
+  static constexpr size_t NUM_TOPICS     = Registry::KEY_SIM_TOPIC_END - Registry::KEY_SIM_TOPIC_START;
+
+  /*-------------------------------------------------------------------------------
+  Aliases
+  -------------------------------------------------------------------------------*/
+  using MessageQueue = std::queue<zmq::message_t>;
+  using MappedTopic  = etl::map<size_t, TopicResource, NUM_TOPICS>;
+  using MappedSocket = etl::map<size_t, std::shared_ptr<zmq::socket_t>, NUM_SOCKETS>;
+
+  /*-------------------------------------------------------------------------------
+  Types
+  -------------------------------------------------------------------------------*/
+  struct TopicResource
+  {
+    bool transmitType;
+    MessageQueue *queue;
+    std::shared_ptr<zmq::socket_t> socket;
+    Chimera::Thread::RecursiveMutex *mtx;
+  };
 
   /*-------------------------------------------------------------------------------
   Public Data
   -------------------------------------------------------------------------------*/
-  /**
-   * @brief ZMQ context for the entire simulation
-   */
-  extern zmq::context_t ZMQContext;
+  extern zmq::context_t ZMQContext; /**< ZMQ context for the entire simulation */
+  extern MappedSocket ZMQSockets;   /**< Sockets associated with each topic */
+  extern MappedTopic ZMQTopics;
+
 
   /*-------------------------------------------------------------------------------
   Public Functions
@@ -48,19 +79,6 @@ namespace Valkyrie::Sim::Transport
    * @param threads   Number of threads to use
    */
   void initTransport( const size_t threads );
-
-  /**
-   * @brief Registers topics that are used for transporting data around
-   */
-  void registerTopics();
-
-  /**
-   * @brief Builds the ZMQ address to connect to
-   *
-   * @param tcp_port      Which TCP port is used
-   * @return std::string
-   */
-  std::string buildAddress( const size_t tcp_port );
 
   /**
    * @brief Enques a message to send through the transport layer
@@ -81,8 +99,6 @@ namespace Valkyrie::Sim::Transport
    * @return false  No message exists or it was failed to be retrieved
    */
   bool receive( Registry::DatabaseKeys topic, zmq::message_t &msg );
-
-
 
 }    // namespace Valkyrie::Sim::Transport
 
