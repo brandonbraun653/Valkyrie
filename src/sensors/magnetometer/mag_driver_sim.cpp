@@ -18,6 +18,7 @@
 /* Project Includes */
 #include <Valkyrie/autogen>
 #include <Valkyrie/sensors>
+#include <Valkyrie/sim>
 
 #if defined( SIMULATOR )
 
@@ -75,6 +76,7 @@ namespace Valkyrie::Sensor::Mag
   void Simulated::measure()
   {
     using namespace Aurora::Sensor;
+    using namespace Valkyrie::Sim::Transport;
 
     /*-------------------------------------------------
     Input protection
@@ -91,30 +93,21 @@ namespace Valkyrie::Sensor::Mag
     zmq::message_t message = {};
 
     /*-------------------------------------------------
-    Grab the topic and verify it matches expectactions
+    Grab data from the queue
     -------------------------------------------------*/
-    zmq::recv_result_t result = 0; //mRXSocket->recv( message, zmq::recv_flags::dontwait );
-    if ( result <= 0 )
+    TopicResource &tp = ZMQTopics.at( static_cast<size_t>( Registry::KEY_SIM_PORT_SENSOR_TOPIC_MAG ) );
     {
-      /* No data to be had yet */
-      return;
-    }
-
-    std::string rx_topic( reinterpret_cast<char *>( message.data() ) );
-    if ( rx_topic.find( mTopic ) != 0 )
-    {
-      /* Topic doesn't match! */
-      return;
-    }
-
-    /*-------------------------------------------------
-    Grab the data and verify expectations
-    -------------------------------------------------*/
-    result = mRXSocket->recv( message, zmq::recv_flags::dontwait );
-    if ( ( result <= 0 ) || ( message.size() != MagSample_size ) )
-    {
-      /* No data or wrong size received */
-      return;
+      Chimera::Thread::LockGuard( *tp.mtx );
+      if( !tp.transmitType && !tp.queue->empty() )
+      {
+        message.copy( tp.queue->front() );
+        tp.queue->pop();
+      }
+      else
+      {
+        /* No valid data yet */
+        return;
+      }
     }
 
     /*-------------------------------------------------

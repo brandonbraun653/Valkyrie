@@ -17,6 +17,7 @@
 #include <Chimera/thread>
 
 /* Valkyrie Includes */
+#include <Valkyrie/autogen>
 #include <Valkyrie/kernel>
 #include <Valkyrie/sensors>
 #include <Valkyrie/sim>
@@ -58,9 +59,52 @@ namespace Valkyrie::Thread::Sim
 
     for ( size_t topic = Registry::KEY_SIM_TOPIC_START; topic < Registry::KEY_SIM_TOPIC_END; topic++ )
     {
-      //LockGuard( queueLock.at( static_cast<Registry::DatabaseKeys>( topic ) ) );
+      /*-------------------------------------------------
+      Make sure the topic resources are initialized and
+      it actually is supposed to receive data.
+      -------------------------------------------------*/
+      auto &tp = ZMQTopics.at( topic );
+      if( !tp.mtx || !tp.queue || !tp.socket || tp.transmitType )
+      {
+        continue;
+      }
 
+      LockGuard( *tp.mtx );
 
+      /*-------------------------------------------------
+      Grab the received topic and verify it matches
+      -------------------------------------------------*/
+      zmq::message_t message = {};
+      zmq::recv_result_t result = tp.socket->recv( message, zmq::recv_flags::dontwait );
+      if ( result <= 0 )
+      {
+        /* No data to be had yet */
+        continue;
+      }
+
+      std::string rx_topic( reinterpret_cast<char *>( message.data() ) );
+      Registry::TopicString topic_str;
+      Registry::readSafe( static_cast<Registry::DatabaseKeys>( topic ), topic_str.data(), topic_str.size() );
+
+      if ( rx_topic.find( std::string_view( topic_str.data() ) ) != 0 )
+      {
+        /* Topic doesn't match! */
+        continue;
+      }
+
+      /*-------------------------------------------------
+      Grab the data and push to the topic's queue
+      -------------------------------------------------*/
+      result = tp.socket->recv( message, zmq::recv_flags::dontwait );
+      if ( result <= 0 )
+      {
+        /* No data or wrong size received */
+        continue;
+      }
+      else
+      {
+        tp.queue->push( std::move( message ) );
+      }
     }
   }
 
@@ -72,9 +116,37 @@ namespace Valkyrie::Thread::Sim
 
     for ( size_t topic = Registry::KEY_SIM_TOPIC_START; topic < Registry::KEY_SIM_TOPIC_END; topic++ )
     {
-      //LockGuard( queueLock.at( static_cast<Registry::DatabaseKeys>( topic ) ) );
+      /*-------------------------------------------------
+      Make sure the topic resources are initialized and
+      it is actually supposed to transmit data.
+      -------------------------------------------------*/
+      auto &tp = ZMQTopics.at( topic );
+      if( !tp.mtx || !tp.queue || !tp.socket || !tp.transmitType )
+      {
+        continue;
+      }
 
+      LockGuard( *tp.mtx );
 
+      /*-------------------------------------------------
+      Ensure the queue contains data
+      -------------------------------------------------*/
+      if ( tp.queue->empty() )
+      {
+        continue;
+      }
+
+      /*-------------------------------------------------
+      Pull a message from the topic's queue
+      -------------------------------------------------*/
+      zmq::message_t message = {};
+      message.copy( tp.queue->front() );
+      tp.queue->pop();
+
+      /*-------------------------------------------------
+      Transmit the data
+      -------------------------------------------------*/
+      tp.socket->send( message, zmq::send_flags::dontwait );
     }
   }
 

@@ -9,7 +9,8 @@
       "*.JLinkScript": "plaintext",
       "utility": "cpp",
       "sensors": "cpp",
-      "sim": "cpp"
+      "sim": "cpp",
+      "autogen": "cpp"
     }
 
   }

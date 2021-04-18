@@ -18,5 +18,6 @@
 
 /* Auto-generated Includes */
 #include "ahrs.pb.h"
+#include "sim.pb.h"
 
 #endif /* !VALKYRIE_AUTOGEN_INCLUDES */
