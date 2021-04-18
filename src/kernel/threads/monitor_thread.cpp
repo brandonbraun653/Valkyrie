@@ -32,10 +32,10 @@ namespace Valkyrie::Thread::SystemMonitor
 
     while( true )
     {
-      if( Registry::readSafe( Registry::KEY_SENSOR_DATA_ACCEL, &sensorData, sizeof( sensorData ) ) )
-      {
-        LOG_DEBUG( "Accel: [x:%2.2f, y:%2.2f, z:%2.2f]\r\n", sensorData.x, sensorData.y, sensorData.z );
-      }
+      // if( Registry::readSafe( Registry::KEY_SENSOR_DATA_ACCEL, &sensorData, sizeof( sensorData ) ) )
+      // {
+      //   LOG_DEBUG( "Accel: [x:%2.2f, y:%2.2f, z:%2.2f]\r\n", sensorData.x, sensorData.y, sensorData.z );
+      // }
 
 
       Chimera::delayMilliseconds( 100 );

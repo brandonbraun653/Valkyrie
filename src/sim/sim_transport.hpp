@@ -17,6 +17,7 @@
 /* STL Includes */
 #include <cstddef>
 #include <string>
+#include <map>
 #include <queue>
 
 /* Valkyrie Includes */
@@ -25,9 +26,6 @@
 /* ZMQ Includes */
 #include <zmq.hpp>
 
-/* ETL Includes */
-#include <etl/queue.h>
-#include <etl/map.h>
 
 namespace Valkyrie::Sim::Transport
 {
@@ -48,8 +46,8 @@ namespace Valkyrie::Sim::Transport
   Aliases
   -------------------------------------------------------------------------------*/
   using MessageQueue = std::queue<zmq::message_t>;
-  using MappedTopic  = etl::map<size_t, TopicResource, NUM_TOPICS>;
-  using MappedSocket = etl::map<size_t, std::shared_ptr<zmq::socket_t>, NUM_SOCKETS>;
+  using MappedTopic  = std::map<size_t, TopicResource>;
+  using MappedSocket = std::map<size_t, std::shared_ptr<zmq::socket_t>>;
 
   /*-------------------------------------------------------------------------------
   Types
@@ -57,6 +55,7 @@ namespace Valkyrie::Sim::Transport
   struct TopicResource
   {
     bool transmitType;
+    Registry::DatabaseKeys key;
     MessageQueue *queue;
     std::shared_ptr<zmq::socket_t> socket;
     Chimera::Thread::RecursiveMutex *mtx;

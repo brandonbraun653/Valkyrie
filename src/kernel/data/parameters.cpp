@@ -127,10 +127,11 @@ namespace Valkyrie::Registry
      */
     static void registerObservables()
     {
-      // for ( size_t x = 0; x < ARRAY_COUNT( ObservableList ); x++ )
-      // {
-      //   LOG_IF_ERROR( Datastore.registerObservable( *ObservableList[ x ] ), "Failed to register observable %d\r\n", x );
-      // }
+      for ( size_t x = 0; x < ARRAY_COUNT( ObservableList ); x++ )
+      {
+        bool error = _Internal::Datastore.registerObservable( *ObservableList[ x ] );
+        LOG_IF_ERROR( error, "Failed to register observable %d\r\n", x );
+      }
     }
 
 

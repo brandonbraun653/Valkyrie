@@ -52,12 +52,10 @@ namespace Valkyrie::Registry
     KEY_SIM_PORT_TX_SIM,    /**< Port the simulator transmits on to the flight software */
     KEY_SIM_PORT_RX_SIM,    /**< Port the simulator listens on for incoming data */
     KEY_SIM_PORT_END,
-#endif  /* SIMULATOR */
 
     /*-------------------------------------------------
     Topic Configuration
     -------------------------------------------------*/
-#if defined( SIMULATOR )
     KEY_SIM_TOPIC_START,
     KEY_SIM_PORT_SENSOR_TOPIC_ACCEL = KEY_SIM_TOPIC_START,
     KEY_SIM_PORT_SENSOR_TOPIC_GYRO,
@@ -67,6 +65,10 @@ namespace Valkyrie::Registry
     KEY_SIM_PORT_TX_SIM_TOPIC_HEARTBEAT,
     KEY_SIM_PORT_RX_SIM_TOPIC_HEARTBEAT,
     KEY_SIM_TOPIC_END,
+
+    /*-------------------------------------------------
+    Sim Specific Data
+    -------------------------------------------------*/
 #endif  /* SIMULATOR */
 
 
@@ -91,6 +93,11 @@ namespace Valkyrie::Registry
     KEY_OBSERVABLE_START,
     KEY_BUTTON_UP = KEY_OBSERVABLE_START,
     KEY_BUTTON_DOWN,
+
+    /*-------------------------------------------------
+    Sim Observables
+    -------------------------------------------------*/
+    KEY_SIM_CONNECTED,
 
     /*-------------------------------------------------
     Miscellaneous
@@ -118,15 +125,18 @@ namespace Valkyrie::Registry
   /*-------------------------------------------------------------------------------
   Observable Data Class Declarations
   -------------------------------------------------------------------------------*/
-  // /* clang-format off */
-  // DECLARE_OBSERVABLE( ButtonDown, uint32_t, KEY_BUTTON_DOWN,  DFLT_OBSERVERS, 50, 100 );
-  // DECLARE_OBSERVABLE( ButtonUp,   uint32_t, KEY_BUTTON_UP,    DFLT_OBSERVERS, 50, 100 );
-  // /* clang-format on */
+  /* clang-format off */
+  //DECLARE_OBSERVABLE( ButtonDown, uint32_t, KEY_BUTTON_DOWN,  DFLT_OBSERVERS, 50, 100 );
+  //DECLARE_OBSERVABLE( ButtonUp,   uint32_t, KEY_BUTTON_UP,    DFLT_OBSERVERS, 50, 100 );
 
-  // static Aurora::Datastore::IObservableAttr *const ObservableList[] = {
-  //   OBSERVABLE_PTR( ButtonDown ),
-  //   OBSERVABLE_PTR( ButtonUp ),
-  // };
+  DECLARE_OBSERVABLE( SimConnected, bool, KEY_SIM_CONNECTED, DFLT_OBSERVERS, 1000, 1000 );
+  /* clang-format on */
+
+  static Aurora::Datastore::IObservableAttr *const ObservableList[] = {
+    //OBSERVABLE_PTR( ButtonDown ),
+    //OBSERVABLE_PTR( ButtonUp ),
+    OBSERVABLE_PTR( SimConnected )
+  };
 
   /*-------------------------------------------------------------------------------
   Public Functions

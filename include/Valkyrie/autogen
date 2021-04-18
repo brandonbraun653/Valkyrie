@@ -15,6 +15,7 @@
 /* NanoPB Includes */
 #include "pb.h"
 #include "pb_decode.h"
+#include "pb_encode.h"
 
 /* Auto-generated Includes */
 #include "ahrs.pb.h"

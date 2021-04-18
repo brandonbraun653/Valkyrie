@@ -82,53 +82,60 @@ namespace Valkyrie::Sim::Transport
       ZMQTopics.insert( { topic, TopicResource() } );
       TopicResource &tp = ZMQTopics.at( topic );
 
-      tp.mtx = new Chimera::Thread::RecursiveMutex();
-      tp.queue = new MessageQueue();
+      tp.mtx    = new Chimera::Thread::RecursiveMutex();
+      tp.queue  = new MessageQueue();
       tp.socket = nullptr;
     }
 
     /*-------------------------------------------------
     Map SENSOR topics to their associated socket
     -------------------------------------------------*/
-    auto &topic = ZMQTopics.at( Registry::KEY_SIM_PORT_SENSOR_TOPIC_ACCEL );
-    topic.transmitType = false;
-    topic.socket = ZMQSockets.at( Registry::KEY_SIM_PORT_SENSOR );
+    TopicResource &accel = ZMQTopics.at( Registry::KEY_SIM_PORT_SENSOR_TOPIC_ACCEL );
+    accel.key            = Registry::KEY_SIM_PORT_SENSOR_TOPIC_ACCEL;
+    accel.transmitType   = false;
+    accel.socket         = ZMQSockets.at( Registry::KEY_SIM_PORT_SENSOR );
 
-    topic = ZMQTopics.at( Registry::KEY_SIM_PORT_SENSOR_TOPIC_GYRO );
-    topic.transmitType = false;
-    topic.socket = ZMQSockets.at( Registry::KEY_SIM_PORT_SENSOR );
+    TopicResource &gyro = ZMQTopics.at( Registry::KEY_SIM_PORT_SENSOR_TOPIC_GYRO );
+    gyro.key            = Registry::KEY_SIM_PORT_SENSOR_TOPIC_GYRO;
+    gyro.transmitType   = false;
+    gyro.socket         = ZMQSockets.at( Registry::KEY_SIM_PORT_SENSOR );
 
-    topic = ZMQTopics.at( Registry::KEY_SIM_PORT_SENSOR_TOPIC_MAG );
-    topic.transmitType = false;
-    topic.socket = ZMQSockets.at( Registry::KEY_SIM_PORT_SENSOR );
+    TopicResource &mag = ZMQTopics.at( Registry::KEY_SIM_PORT_SENSOR_TOPIC_MAG );
+    mag.key            = Registry::KEY_SIM_PORT_SENSOR_TOPIC_MAG;
+    mag.transmitType   = false;
+    mag.socket         = ZMQSockets.at( Registry::KEY_SIM_PORT_SENSOR );
 
     /*-------------------------------------------------
     Map USR_INPUT topics to their associated socket
     -------------------------------------------------*/
-    topic = ZMQTopics.at( Registry::KEY_SIM_PORT_USR_INPUT_TOPIC_SET_POINT );
-    topic.transmitType = false;
-    topic.socket = ZMQSockets.at( Registry::KEY_SIM_PORT_USR_INPUT );
+    TopicResource &usr_input = ZMQTopics.at( Registry::KEY_SIM_PORT_USR_INPUT_TOPIC_SET_POINT );
+    usr_input.key            = Registry::KEY_SIM_PORT_USR_INPUT_TOPIC_SET_POINT;
+    usr_input.transmitType   = false;
+    usr_input.socket         = ZMQSockets.at( Registry::KEY_SIM_PORT_USR_INPUT );
 
     /*-------------------------------------------------
     Map TX_SIM topics to their associated socket
     -------------------------------------------------*/
-    topic = ZMQTopics.at( Registry::KEY_SIM_PORT_TX_SIM_TOPIC_HEARTBEAT );
-    topic.transmitType = false;
-    topic.socket = ZMQSockets.at( Registry::KEY_SIM_PORT_TX_SIM );
+    TopicResource &tx_hb = ZMQTopics.at( Registry::KEY_SIM_PORT_TX_SIM_TOPIC_HEARTBEAT );
+    tx_hb.key            = Registry::KEY_SIM_PORT_TX_SIM_TOPIC_HEARTBEAT;
+    tx_hb.transmitType   = false;
+    tx_hb.socket         = ZMQSockets.at( Registry::KEY_SIM_PORT_TX_SIM );
 
     /*-------------------------------------------------
     Map RX_SIM topics to their associated socket
     -------------------------------------------------*/
-    topic = ZMQTopics.at( Registry::KEY_SIM_PORT_RX_SIM_TOPIC_HEARTBEAT );
-    topic.transmitType = true;
-    topic.socket = ZMQSockets.at( Registry::KEY_SIM_PORT_RX_SIM );
+    TopicResource &rx_hb = ZMQTopics.at( Registry::KEY_SIM_PORT_RX_SIM_TOPIC_HEARTBEAT );
+    rx_hb.key            = Registry::KEY_SIM_PORT_RX_SIM_TOPIC_HEARTBEAT;
+    rx_hb.transmitType   = true;
+    rx_hb.socket         = ZMQSockets.at( Registry::KEY_SIM_PORT_RX_SIM );
 
     /*-------------------------------------------------
     Map SYS_CTRL topics to their associated socket
     -------------------------------------------------*/
-    topic = ZMQTopics.at( Registry::KEY_SIM_PORT_SYS_CTRL_TOPIC_MOTOR );
-    topic.transmitType = true;
-    topic.socket = ZMQSockets.at( Registry::KEY_SIM_PORT_SYS_CTRL );
+    TopicResource &motor_ctrl = ZMQTopics.at( Registry::KEY_SIM_PORT_SYS_CTRL_TOPIC_MOTOR );
+    motor_ctrl.key            = Registry::KEY_SIM_PORT_SYS_CTRL_TOPIC_MOTOR;
+    motor_ctrl.transmitType   = true;
+    motor_ctrl.socket         = ZMQSockets.at( Registry::KEY_SIM_PORT_SYS_CTRL );
   }
 
 
@@ -143,8 +150,9 @@ namespace Valkyrie::Sim::Transport
     /*-------------------------------------------------
     Protect against the topic only being for RX-ing
     -------------------------------------------------*/
-    if( !tp.transmitType )
+    if ( !tp.transmitType )
     {
+      LOG_ERROR( "Tried to transmit on topic %d, but it's not of transmit type", topic );
       return false;
     }
 
@@ -167,7 +175,7 @@ namespace Valkyrie::Sim::Transport
     /*-------------------------------------------------
     Protect against the topic only being for TX-ing
     -------------------------------------------------*/
-    if( tp.transmitType )
+    if ( tp.transmitType )
     {
       return false;
     }
@@ -203,11 +211,12 @@ namespace Valkyrie::Sim::Transport
     topic.fill( 0 );
 
     /* Create the socket */
-    ZMQSockets.insert( { key, std::make_shared<zmq::socket_t>( ZMQContext, ZMQ_SUB ) } );
+    ZMQSockets.insert( std::make_pair( key, std::make_shared<zmq::socket_t>( ZMQContext, ZMQ_SUB ) ) );
 
     /* Figure out the specific port to connect to */
     Registry::readSafe( key, &port, sizeof( port ) );
     ZMQSockets.at( key )->connect( buildAddress( port ) );
+    LOG_INFO( "Sensor port listening on %s\n", buildAddress( port ).c_str() );
 
     /* Subscribe to the known topics */
     topic.fill( 0 );
@@ -233,11 +242,12 @@ namespace Valkyrie::Sim::Transport
     topic.fill( 0 );
 
     /* Create the socket */
-    ZMQSockets.insert( { key, std::make_shared<zmq::socket_t>( ZMQContext, ZMQ_SUB ) } );
+    ZMQSockets.insert( std::make_pair( key, std::make_shared<zmq::socket_t>( ZMQContext, ZMQ_SUB ) ) );
 
     /* Figure out the specific port to connect to */
     Registry::readSafe( key, &port, sizeof( port ) );
     ZMQSockets.at( key )->connect( buildAddress( port ) );
+    LOG_INFO( "User input port listening on %s\n", buildAddress( port ).c_str() );
 
     /* Subscribe to the known topics */
     topic.fill( 0 );
@@ -254,11 +264,12 @@ namespace Valkyrie::Sim::Transport
     topic.fill( 0 );
 
     /* Create the socket */
-    ZMQSockets.insert( { key, std::make_shared<zmq::socket_t>( ZMQContext, ZMQ_SUB ) } );
+    ZMQSockets.insert( std::make_pair( key, std::make_shared<zmq::socket_t>( ZMQContext, ZMQ_SUB ) ) );
 
     /* Figure out the specific port to connect to */
     Registry::readSafe( key, &port, sizeof( port ) );
     ZMQSockets.at( key )->connect( buildAddress( port ) );
+    LOG_INFO( "Flight software listening to SIM on %s\n", buildAddress( port ).c_str() );
 
     /* Subscribe to the known topics */
     topic.fill( 0 );
@@ -274,12 +285,12 @@ namespace Valkyrie::Sim::Transport
     port = 0;
 
     /* Create the socket */
-    ZMQSockets.insert( { key, std::make_shared<zmq::socket_t>( ZMQContext, ZMQ_PUB ) } );
+    ZMQSockets.insert( std::make_pair( key, std::make_shared<zmq::socket_t>( ZMQContext, ZMQ_PUB ) ) );
 
     /* Figure out the specific port to bind to */
     Registry::readSafe( key, &port, sizeof( port ) );
     ZMQSockets.at( key )->bind( buildAddress( port ) );
-
+    LOG_INFO( "System control port transmitting on %s\n", buildAddress( port ).c_str() );
 
     /*-------------------------------------------------------------------------------
     Open the SIM RX port, which the flight software uses to transmit info to the sim.
@@ -290,12 +301,12 @@ namespace Valkyrie::Sim::Transport
     port = 0;
 
     /* Create the socket */
-    ZMQSockets.insert( { key, std::make_shared<zmq::socket_t>( ZMQContext, ZMQ_PUB ) } );
+    ZMQSockets.insert( std::make_pair( key, std::make_shared<zmq::socket_t>( ZMQContext, ZMQ_PUB ) ) );
 
     /* Figure out the specific port to bind to */
     Registry::readSafe( key, &port, sizeof( port ) );
     ZMQSockets.at( key )->bind( buildAddress( port ) );
-
+    LOG_INFO( "Flight software transmitting to SIM on %s\n", buildAddress( port ).c_str() );
   }
 
 
@@ -339,7 +350,7 @@ namespace Valkyrie::Sim::Transport
     snprintf( topic, sim_TOPIC_STR_SIZE, "tx_heartbeat" );
     Registry::writeSafe( DatabaseKeys::KEY_SIM_PORT_TX_SIM_TOPIC_HEARTBEAT, topic, sim_TOPIC_STR_SIZE );
 
-    snprintf( topic, sim_TOPIC_STR_SIZE, "rx_hearbeat" );
+    snprintf( topic, sim_TOPIC_STR_SIZE, "rx_heartbeat" );
     Registry::writeSafe( DatabaseKeys::KEY_SIM_PORT_RX_SIM_TOPIC_HEARTBEAT, topic, sim_TOPIC_STR_SIZE );
   }
 

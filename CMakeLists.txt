@@ -70,6 +70,8 @@ gen_intf_lib(
     "${PROJECT_ROOT}/lib/cppzmq"
     "${PROJECT_ROOT}/lib/ArduinoJSON/src"
     "${PROJECT_ROOT}/lib/ukf/include"
+  INTF_LIBRARIES
+    vdrone_nanopb_proto_intf_inc
   EXPORT_DIR
     "${PROJECT_BINARY_DIR}/Project"
 )
