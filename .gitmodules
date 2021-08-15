@@ -46,3 +46,6 @@
 [submodule "lib/PyUtils"]
 	path = lib/PyUtils
 	url = https://github.com/brandonbraun653/PyUtils.git
+[submodule "lib/Mercury"]
+	path = lib/Mercury
+	url = https://github.com/brandonbraun653/Mercury.git
