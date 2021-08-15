@@ -102,7 +102,7 @@ namespace Valkyrie::Registry
       all_loaded = true;
       all_loaded &= sim_ports.registerParameters();
       all_loaded &= sim_ports.populateFromFile();
-      LOG_IF_ERROR( all_loaded, "Failed to load Simulator Port config\r\n" );
+      LOG_ERROR_IF( !all_loaded, "Failed to load Simulator Port config\r\n" );
 #endif /* SIMULATOR */
 
       /*-------------------------------------------------
@@ -112,7 +112,7 @@ namespace Valkyrie::Registry
       all_loaded = true;
       all_loaded &= sensor_timing.registerParameters();
       all_loaded &= sensor_timing.populateFromFile();
-      LOG_IF_ERROR( all_loaded, "Failed to load Sensor Timing config\r\n" );
+      LOG_ERROR_IF( !all_loaded, "Failed to load Sensor Timing config\r\n" );
 
       /*-------------------------------------------------------------------------------
       Observable data that changes at runtime and could be used to notify other parts
@@ -137,7 +137,7 @@ namespace Valkyrie::Registry
       for ( size_t x = 0; x < ARRAY_COUNT( ObservableList ); x++ )
       {
         bool error = _Internal::Datastore.registerObservable( ObservableList[ x ], &_Internal::Database );
-        LOG_IF_ERROR( error, "Failed to register observable %d\r\n", x );
+        LOG_ERROR_IF( !error, "Failed to register observable %d\r\n", x );
       }
     }
 

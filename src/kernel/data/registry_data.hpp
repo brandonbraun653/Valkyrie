@@ -38,19 +38,19 @@ namespace Valkyrie::Registry
     KEY_SIMPLE_START,
     KEY_BOOT_COUNT = KEY_SIMPLE_START,
 
-    /*-------------------------------------------------------------------------------
-    Simulator Data
-    -------------------------------------------------------------------------------*/
-    /*-------------------------------------------------
-    Port Configuration
-    -------------------------------------------------*/
+  /*-------------------------------------------------------------------------------
+  Simulator Data
+  -------------------------------------------------------------------------------*/
+  /*-------------------------------------------------
+  Port Configuration
+  -------------------------------------------------*/
 #if defined( SIMULATOR )
     KEY_SIM_PORT_START,
-    KEY_SIM_PORT_SENSOR = KEY_SIM_PORT_START,    /**< Simulated sensor data from drone physics */
-    KEY_SIM_PORT_SYS_CTRL,  /**< Control inputs from flight software to sim */
-    KEY_SIM_PORT_USR_INPUT, /**< Various user input data to the sim */
-    KEY_SIM_PORT_TX_SIM,    /**< Port the simulator transmits on to the flight software */
-    KEY_SIM_PORT_RX_SIM,    /**< Port the simulator listens on for incoming data */
+    KEY_SIM_PORT_SENSOR = KEY_SIM_PORT_START, /**< Simulated sensor data from drone physics */
+    KEY_SIM_PORT_SYS_CTRL,                    /**< Control inputs from flight software to sim */
+    KEY_SIM_PORT_USR_INPUT,                   /**< Various user input data to the sim */
+    KEY_SIM_PORT_TX_SIM,                      /**< Port the simulator transmits on to the flight software */
+    KEY_SIM_PORT_RX_SIM,                      /**< Port the simulator listens on for incoming data */
     KEY_SIM_PORT_END,
 
     /*-------------------------------------------------
@@ -66,10 +66,10 @@ namespace Valkyrie::Registry
     KEY_SIM_PORT_RX_SIM_TOPIC_HEARTBEAT,
     KEY_SIM_TOPIC_END,
 
-    /*-------------------------------------------------
-    Sim Specific Data
-    -------------------------------------------------*/
-#endif  /* SIMULATOR */
+  /*-------------------------------------------------
+  Sim Specific Data
+  -------------------------------------------------*/
+#endif /* SIMULATOR */
 
 
     /*-------------------------------------------------
@@ -108,8 +108,8 @@ namespace Valkyrie::Registry
     /*-------------------------------------------------
     Aliases
     -------------------------------------------------*/
-    KEY_OBSERVABLE_END  = NUM_DATABASE_KEYS,
-    KEY_SIMPLE_END = KEY_OBSERVABLE_START,
+    KEY_OBSERVABLE_END = NUM_DATABASE_KEYS,
+    KEY_SIMPLE_END     = KEY_OBSERVABLE_START,
 
     /*-------------------------------------------------
     Configuration
@@ -133,9 +133,12 @@ namespace Valkyrie::Registry
   /* clang-format on */
 
   static Aurora::Datastore::IObservableAttr *const ObservableList[] = {
-    //OBSERVABLE_PTR( ButtonDown ),
-    //OBSERVABLE_PTR( ButtonUp ),
+  // OBSERVABLE_PTR( ButtonDown ),
+  // OBSERVABLE_PTR( ButtonUp ),
+
+#if defined( SIMULATOR )
     OBSERVABLE_PTR( SimConnected )
+#endif /* SIMULATOR */
   };
 
   /*-------------------------------------------------------------------------------
@@ -151,6 +154,6 @@ namespace Valkyrie::Registry
    * @return false      Load failed
    */
   bool loadData( std::string_view &filename, uint8_t *const buffer, const size_t size );
-}  // namespace Valkyrie
+}    // namespace Valkyrie::Registry
 
-#endif  /* !VALKYRIE_REGISTRY_DATA_HPP */
+#endif /* !VALKYRIE_REGISTRY_DATA_HPP */

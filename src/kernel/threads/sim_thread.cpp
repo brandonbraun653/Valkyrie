@@ -23,6 +23,7 @@
 #include <Valkyrie/sim>
 #include <src/kernel/threads/thread_listing.hpp>
 
+#if defined( SIMULATOR )
 namespace Valkyrie::Thread::Sim
 {
   /*-------------------------------------------------------------------------------
@@ -242,3 +243,4 @@ namespace Valkyrie::Thread::Sim
   }
 
 }  // namespace Valkyrie::Thread::Hardware
+#endif  /* SIMULATOR */

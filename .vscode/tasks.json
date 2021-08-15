@@ -35,6 +35,15 @@
       "problemMatcher": []
     },
     {
+      "label": "Configure HW: Linux",
+      "type": "shell",
+      "command": "./cfg_bld_hw_linux.sh",
+      "options": {
+        "cwd": "${workspaceFolder}/tools/scripts"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "Configure Sim: FreeRTOS",
       "type": "shell",
       "command": "./cfg_bld_sim_freertos.sh",
@@ -56,6 +65,15 @@
       "label": "Configure Tests",
       "type": "shell",
       "command": "./cfg_bld_tests.sh",
+      "options": {
+        "cwd": "${workspaceFolder}/tools/scripts"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "BeaglePreLoad",
+      "type": "shell",
+      "command": "./beagle_debug_loader.sh",
       "options": {
         "cwd": "${workspaceFolder}/tools/scripts"
       },

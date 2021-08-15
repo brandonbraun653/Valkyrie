@@ -133,7 +133,7 @@ namespace Valkyrie::Sensor
     /*-------------------------------------------------
     Make sure all updates went ok
     -------------------------------------------------*/
-    LOG_IF_ERROR( updateOk, "IMU update failed\r\n" );
+    LOG_ERROR_IF( !updateOk, "IMU update failed\r\n" );
   }
 
 }    // namespace Valkyrie::Sensor

@@ -14,19 +14,18 @@ set(CPP_PLATFORM "freertos")
 include("${COMMON_TOOL_ROOT}/cmake/utility/embedded.cmake")
 include("lib/CommonTools/cmake/options/common.cmake")
 
-# For now hard code the sim target build settings
-add_subdirectory("lib/CommonTools/cmake/device/generic")
-
 # Override the linker command
-if(Toolchain::HAS_GCC_ARM_NONE_EABI OR Toolchain::HAS_GCC)
+if(Toolchain::HAS_GCC_ARM_LINUX_EABIHF OR Toolchain::HAS_GCC)
   include("lib/CommonTools/cmake/toolchains/linker_whole_archive.cmake")
 endif()
 
-# Select a global target flag
-if(Toolchain::HAS_GCC_ARM_NONE_EABI)
+# Import the correct compiler/linker flags for the target
+if(Toolchain::HAS_GCC_ARM_LINUX_EABIHF)
   add_compile_definitions(EMBEDDED)
+  add_subdirectory("lib/CommonTools/cmake/device/am335x")
 elseif(Toolchain::HAS_GCC)
   add_compile_definitions(SIMULATOR)
+  add_subdirectory("lib/CommonTools/cmake/device/generic")
 endif()
 
 # ====================================================

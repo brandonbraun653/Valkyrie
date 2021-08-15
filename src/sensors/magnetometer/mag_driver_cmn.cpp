@@ -48,7 +48,7 @@ namespace Valkyrie::Sensor::Mag
     auto sensor = new Valkyrie::Sensor::Mag::Simulated();
     sensor->configureZMQ( std::string_view( topic.data() ) );
 #else
-#error "No hardware sensor init"
+//#error "No hardware sensor init"
 #endif
 
     /*-------------------------------------------------
@@ -56,7 +56,7 @@ namespace Valkyrie::Sensor::Mag
     -------------------------------------------------*/
     // sensor->registerCallback( Aurora::Sensor::Event::CB_ON_SAMPLE_SUCCESS, etl::delegate<void( size_t )>::create<onSuccess>()
     // ); sensor->registerCallback( Aurora::Sensor::Event::CB_ON_SAMPLE_FAIL, etl::delegate<void( size_t )>::create<onFail>() );
-    s_mag_sensor = ISensor_sPtr( sensor );
+    // s_mag_sensor = ISensor_sPtr( sensor );
   }
 
 

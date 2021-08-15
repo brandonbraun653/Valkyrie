@@ -63,7 +63,7 @@ Sim Port Configuration
     -------------------------------------------------*/
     Registry::loadData( filename, file_buffer.data(), file_buffer.size() );
     auto error = deserializeJson( doc, file_buffer.data() );
-    LOG_IF_ERROR( error == DeserializationError::Ok, "JSON deserialization failed\r\n" );
+    LOG_ERROR_IF( error != DeserializationError::Ok, "JSON deserialization failed\r\n" );
 
     /*-------------------------------------------------
     Store the resulting keys into the project registry
@@ -122,7 +122,7 @@ Sim Port Configuration
     -------------------------------------------------*/
     Registry::loadData( filename, file_buffer.data(), file_buffer.size() );
     auto error = deserializeJson( doc, file_buffer.data() );
-    LOG_IF_ERROR( error == DeserializationError::Ok, "JSON deserialization failed\r\n" );
+    LOG_ERROR_IF( error != DeserializationError::Ok, "JSON deserialization failed\r\n" );
 
     /*-------------------------------------------------
     Store the resulting keys into the project registry

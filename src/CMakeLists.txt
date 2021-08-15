@@ -7,7 +7,11 @@ add_subdirectory(sensors)
 add_subdirectory(sim)
 
 
-# Collect all the source modules together
+
+target_compile_options(prj_device_target INTERFACE
+  -Wno-unused-parameter
+  -Wno-ignored-qualifiers
+)
 
 #------------------------------------------------------------------------------
 # Valkyrie Executable
@@ -53,6 +57,12 @@ target_link_libraries(Valkyrie PRIVATE
   prj_build_target
 )
 
+# Linux HW Build Libraries
+if(Toolchain::HAS_GCC_ARM_LINUX_EABIHF AND Toolchain::REQUIRES_NATIVE_THREADS)
+  target_link_libraries(Valkyrie PRIVATE
+      pthread
+    )
+endif()
 
 # Sim Only Libraries
 if(Toolchain::HAS_GCC)
@@ -76,8 +86,6 @@ if(Toolchain::HAS_GCC)
   )
 endif()
 
-# Force the protobuf definitions to be built before the executable
-# add_dependencies(Valkyrie ahrs_pb2)
 
 # Copy the built executable to the common output directory for debugging
 add_custom_command(TARGET Valkyrie POST_BUILD
