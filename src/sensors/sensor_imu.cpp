@@ -83,7 +83,16 @@ namespace Valkyrie::Sensor
     Function data cache
     -------------------------------------------------*/
     Sample reading = {};
-    bool updateOk     = true;
+    bool updateOk  = true;
+
+    /*-------------------------------------------------
+    Temporary protections until sensors instances are
+    supported on HW.
+    -------------------------------------------------*/
+    if( !accel || !gyro || !mag )
+    {
+      return;
+    }
 
     /*-------------------------------------------------
     Process the accelerometer

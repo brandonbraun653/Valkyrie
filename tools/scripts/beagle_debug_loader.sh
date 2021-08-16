@@ -23,4 +23,4 @@ scp $HOST_EXE_PATH debian@$TARGET_IP:$BEAGLE_EXE_FLDR
 
 # start gdb on target (IS ONE LONG COMMAND)
 echo "Starting GDB server"
-ssh -n -f debian@$TARGET_IP "sh -c 'cd $BEAGLE_EXE_FLDR; nohup gdbserver $TARGET_IP:$GDB_SERVER_PORT $EXE_NAME > /dev/null 2>&1 &'"
+ssh -n -f debian@$TARGET_IP "sh -c 'cd $BEAGLE_EXE_FLDR; nohup gdbserver $TARGET_IP:$GDB_SERVER_PORT $EXE_NAME'"
