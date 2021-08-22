@@ -60,6 +60,7 @@ target_link_libraries(Valkyrie PRIVATE
 # Linux HW Build Libraries
 if(Toolchain::HAS_GCC_ARM_LINUX_EABIHF AND Toolchain::REQUIRES_NATIVE_THREADS)
   target_link_libraries(Valkyrie PRIVATE
+      mercury_core
       pthread
     )
 endif()
