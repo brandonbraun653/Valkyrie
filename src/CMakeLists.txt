@@ -33,16 +33,8 @@ target_link_libraries(Valkyrie PRIVATE
   lib_valkyrie_sensor
   lib_valkyrie_sim
 
-  # Apollo
-  apollo_freertos_hooks
-
   # Hardware Libraries
   chimera_core_dbg
-
-  # Segger System View (Make this only embedded)
-  # segger_sys_view
-  # segger_sys_view_intf
-  # segger_sys_view_cortex_m4_freertos
 
   # Utility Libraries
   aurora_core_dbg
