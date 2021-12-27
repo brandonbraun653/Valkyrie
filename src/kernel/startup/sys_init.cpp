@@ -54,7 +54,7 @@ namespace Valkyrie::Boot
     cfg.function.callable.pointer = Background::main;
     cfg.function.type             = FunctorType::C_STYLE;
     cfg.name                      = Background::Name.data();
-    cfg.priority                  = Priority::LEVEL_1;
+    cfg.priority                  = Priority::MINIMUM;
     cfg.stackWords                = Background::StackDepth;
     cfg.arg                       = nullptr;
     cfg.type                      = TaskInitType::DYNAMIC;

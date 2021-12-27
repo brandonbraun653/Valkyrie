@@ -28,7 +28,7 @@ namespace Valkyrie::Thread
     cfg.function.callable.pointer = HardwareManager::main;
     cfg.function.type             = FunctorType::C_STYLE;
     cfg.name                      = HardwareManager::Name.data();
-    cfg.priority                  = Priority::LEVEL_4;
+    cfg.priority                  = 4;
     cfg.stackWords                = HardwareManager::StackDepth;
     cfg.arg                       = nullptr;
     cfg.type                      = TaskInitType::DYNAMIC;
@@ -43,7 +43,7 @@ namespace Valkyrie::Thread
     cfg.function.callable.pointer = SystemMonitor::main;
     cfg.function.type             = FunctorType::C_STYLE;
     cfg.name                      = SystemMonitor::Name.data();
-    cfg.priority                  = Priority::LEVEL_4;
+    cfg.priority                  = 4;
     cfg.stackWords                = SystemMonitor::StackDepth;
     cfg.arg                       = nullptr;
     cfg.type                      = TaskInitType::DYNAMIC;
@@ -59,7 +59,7 @@ namespace Valkyrie::Thread
     cfg.function.callable.pointer = Sim::main;
     cfg.function.type             = FunctorType::C_STYLE;
     cfg.name                      = Sim::Name.data();
-    cfg.priority                  = Priority::LEVEL_5;
+    cfg.priority                  = 5;
     cfg.stackWords                = Sim::StackDepth;
     cfg.arg                       = nullptr;
     cfg.type                      = TaskInitType::DYNAMIC;
